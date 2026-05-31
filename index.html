@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>नाड़ी परीक्षा एवं मर्म थेरेपी - FREE Webinar</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Montserrat:wght@700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d1f0d;
+      font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      padding-bottom: 100px; /* space for sticky bar */
+    }
+
+    /* ── STICKY BOTTOM JOIN BAR ── */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: #0d1f0d;
+      border-top: 3px solid #cc0000;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 -6px 30px rgba(204,0,0,.5);
+      animation: sticky-appear .4s ease-out;
+    }
+    @keyframes sticky-appear {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    .sticky-arrow {
+      color: #cc0000; font-size: 26px;
+      text-shadow: 0 0 10px rgba(204,0,0,.9);
+      animation: arr-blink .6s ease-in-out infinite alternate;
+    }
+    @keyframes arr-blink {
+      from { opacity:.3; transform:translateX(0); }
+      to   { opacity:1;  transform:translateX(-5px); }
+    }
+    .sticky-arrow.r {
+      animation-name: arr-blink-r;
+    }
+    @keyframes arr-blink-r {
+      from { opacity:.3; transform:translateX(0); }
+      to   { opacity:1;  transform:translateX(5px); }
+    }
+    .sticky-btn {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, #cc0000 0%, #ff1111 50%, #cc0000 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(17px, 4.5vw, 22px);
+      font-weight: 900;
+      text-decoration: none;
+      padding: 15px 20px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      box-shadow: 0 4px 20px rgba(255,0,0,.6);
+      animation: sticky-pulse 1s ease-in-out infinite;
+      overflow: hidden; position: relative;
+      max-width: 380px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @keyframes sticky-pulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(255,0,0,.6); transform: scale(1); }
+      50%      { box-shadow: 0 6px 35px rgba(255,0,0,.9); transform: scale(1.03); }
+    }
+    .sticky-btn::before {
+      content: '';
+      position: absolute; top:0; left:-100%; width:60%; height:100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+      animation: shimmer 1.8s ease-in-out infinite;
+    }
+
+    /* ── Animated BG ── */
+    .bg-anim {
+      position: fixed; inset: 0; z-index: -2;
+      background: linear-gradient(160deg, #071407 0%, #0d2e0d 40%, #1a1a00 100%);
+    }
+    .bg-anim::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(34,139,34,0.18) 0%, transparent 65%);
+      animation: gb 4s ease-in-out infinite alternate;
+    }
+    @keyframes gb { from { opacity: .4; } to { opacity: 1; } }
+
+    /* ── Floating leaves ── */
+    .leaf {
+      position: fixed; font-size: 22px; opacity: 0;
+      animation: leaf-fall linear infinite;
+      pointer-events: none; z-index: 0;
+    }
+    @keyframes leaf-fall {
+      0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0; }
+      10%  { opacity: .7; }
+      90%  { opacity: .4; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 16px 14px 50px;
+    }
+
+    /* ── TOP BADGE ── */
+    .top-badge {
+      background: linear-gradient(90deg, #1e6b1e, #2d9e2d, #1e6b1e);
+      color: #ffe87c;
+      font-size: clamp(13px, 3.5vw, 16px);
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      margin-bottom: 16px;
+      letter-spacing: .5px;
+      border: 2px solid #ffe87c;
+      box-shadow: 0 0 25px rgba(45,158,45,.7);
+      animation: badge-pulse 2s ease-in-out infinite;
+      text-align: center;
+    }
+    @keyframes badge-pulse {
+      0%,100% { box-shadow: 0 0 25px rgba(45,158,45,.7); }
+      50%      { box-shadow: 0 0 50px rgba(45,158,45,1); }
+    }
+
+    /* ── POSTER IMAGE ── */
+    .poster-wrap {
+      width: 100%; max-width: 500px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 4px solid #2d9e2d;
+      box-shadow: 0 0 40px rgba(45,158,45,.6), 0 0 80px rgba(45,158,45,.3);
+      margin-bottom: 24px;
+      animation: poster-glow 2.5s ease-in-out infinite;
+      position: relative;
+    }
+    @keyframes poster-glow {
+      0%,100% { box-shadow: 0 0 40px rgba(45,158,45,.6), 0 0 80px rgba(45,158,45,.3); }
+      50%      { box-shadow: 0 0 60px rgba(45,158,45,.9), 0 0 120px rgba(255,232,124,.3); }
+    }
+    .poster-wrap img {
+      width: 100%; display: block;
+    }
+    .poster-wrap .poster-ribbon {
+      position: absolute; top: 14px; right: -8px;
+      background: #cc0000; color: #fff;
+      font-size: 13px; font-weight: 900;
+      padding: 6px 18px 6px 12px;
+      border-radius: 4px 0 0 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.5);
+      animation: flicker 1.5s infinite;
+      letter-spacing: .5px;
+    }
+    @keyframes flicker { 0%,94%,100%{opacity:1} 95%{opacity:.3} 97%{opacity:1} 98%{opacity:.2} }
+
+    /* ── SECTION CARDS ── */
+    .card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(45,158,45,.4);
+      border-radius: 16px;
+      padding: 20px 18px;
+      width: 100%; max-width: 500px;
+      margin-bottom: 18px;
+    }
+    .card-title {
+      font-size: clamp(16px, 4.5vw, 20px);
+      font-weight: 900;
+      color: #ffe87c;
+      text-align: center;
+      margin-bottom: 14px;
+      text-shadow: 0 0 12px rgba(255,232,124,.5);
+    }
+
+    /* ── HEADLINE ── */
+    .main-headline {
+      text-align: center; width: 100%; max-width: 500px; margin-bottom: 16px;
+    }
+    .main-headline h1 {
+      font-size: clamp(30px, 9vw, 52px);
+      font-weight: 900;
+      color: #1a5e1a;
+      text-shadow: 2px 2px 0 #ffe87c, 0 0 30px rgba(45,158,45,.5);
+      line-height: 1.2;
+      -webkit-text-stroke: 1px #2d9e2d;
+      animation: headline-shine 3s ease-in-out infinite;
+    }
+    @keyframes headline-shine {
+      0%,100% { text-shadow: 2px 2px 0 #ffe87c, 0 0 30px rgba(45,158,45,.5); }
+      50%      { text-shadow: 2px 2px 0 #ffe87c, 0 0 60px rgba(45,158,45,.9), 0 0 100px rgba(255,232,124,.3); }
+    }
+    .main-headline h1 .red { color: #cc0000; -webkit-text-stroke: 1px #ff4444; }
+    .main-headline .sub {
+      font-size: clamp(18px, 5vw, 24px);
+      color: #e0e0e0; font-weight: 700; margin-top: 6px;
+    }
+
+    /* ── TIME / WEBINAR BOX ── */
+    .time-box {
+      background: linear-gradient(135deg, #1a5e1a, #0d2e0d);
+      border: 3px solid #ffe87c;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      width: 100%; max-width: 500px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 30px rgba(255,232,124,.3);
+      animation: time-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes time-pulse {
+      0%,100% { box-shadow: 0 0 30px rgba(255,232,124,.3); }
+      50%      { box-shadow: 0 0 60px rgba(255,232,124,.6); }
+    }
+    .time-label {
+      background: #cc0000; color: #fff;
+      font-size: clamp(15px, 4vw, 18px); font-weight: 900;
+      padding: 8px 24px; border-radius: 30px;
+      display: inline-block; margin-bottom: 10px;
+      animation: flicker 2s infinite;
+    }
+    .time-clock {
+      font-size: clamp(52px, 15vw, 80px);
+      font-weight: 900; color: #ffe87c;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(255,232,124,.8);
+      animation: clock-glow 1s ease-in-out infinite alternate;
+    }
+    @keyframes clock-glow {
+      from { text-shadow: 0 0 20px rgba(255,232,124,.7); }
+      to   { text-shadow: 0 0 50px rgba(255,232,124,1), 0 0 80px rgba(255,200,0,.5); }
+    }
+    .time-baje {
+      font-size: clamp(20px, 5.5vw, 26px);
+      color: #ffffff; font-weight: 700; margin-bottom: 12px;
+    }
+    .free-badge {
+      background: #ffe87c; color: #1a1a00;
+      font-size: clamp(18px, 5vw, 22px); font-weight: 900;
+      padding: 10px 30px; border-radius: 30px;
+      display: inline-block;
+      animation: badge-bounce .8s ease-in-out infinite alternate;
+      box-shadow: 0 4px 15px rgba(255,232,124,.5);
+    }
+    @keyframes badge-bounce {
+      from { transform: scale(1); }
+      to   { transform: scale(1.06); }
+    }
+    .golden-text {
+      font-size: clamp(15px, 4vw, 18px);
+      color: #aaddaa; margin-top: 10px; font-weight: 600;
+    }
+
+    /* ── BENEFITS ICONS ── */
+    .benefits-row {
+      display: flex; gap: 10px; justify-content: center;
+      width: 100%; max-width: 500px; margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .benefit-chip {
+      background: rgba(45,158,45,.15);
+      border: 1px solid rgba(45,158,45,.5);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+      flex: 1; min-width: 100px;
+    }
+    .benefit-chip .b-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+    .benefit-chip .b-text {
+      font-size: clamp(11px, 3vw, 13px);
+      color: #ccddcc; font-weight: 600; line-height: 1.4;
+    }
+
+    /* ── LEARN LIST ── */
+    .learn-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      color: #ddeecc;
+      font-size: clamp(15px, 4.2vw, 18px);
+      font-weight: 600; line-height: 1.5;
+    }
+    .learn-item:last-child { border-bottom: none; }
+    .learn-check { color: #25D366; font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── ARROWS ── */
+    .arrow-section {
+      display: flex; flex-direction: column; align-items: center; margin-bottom: 8px;
+    }
+    .arrow-row { display: flex; gap: 8px; margin-bottom: 2px; }
+    .arrow {
+      color: #cc0000; font-size: 36px;
+      text-shadow: 0 0 15px rgba(204,0,0,.8);
+      animation: bounce-d .6s ease-in-out infinite alternate;
+    }
+    .arrow:nth-child(2){animation-delay:.1s}
+    .arrow:nth-child(3){animation-delay:.2s}
+    @keyframes bounce-d {
+      from { transform: translateY(-6px); opacity:.5; }
+      to   { transform: translateY(6px);  opacity:1; }
+    }
+
+    /* ── JOIN BUTTON ── */
+    .join-wrap {
+      position: relative; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .join-wrap::before, .join-wrap::after {
+      content: '';
+      position: absolute; inset: -5px;
+      border-radius: 18px;
+      background: linear-gradient(45deg,#ff0000,#ff6600,#ff0000,#cc0000);
+      background-size: 300% 300%;
+      animation: spin-border 2s linear infinite;
+      z-index: -1;
+    }
+    .join-wrap::after { filter: blur(14px); opacity:.7; }
+    @keyframes spin-border {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .side-arr {
+      color: #cc0000; font-size: 30px;
+      text-shadow: 0 0 12px rgba(204,0,0,.8);
+    }
+    .side-arr.l { animation: arr-l .7s ease-in-out infinite alternate; }
+    .side-arr.r { animation: arr-r .7s ease-in-out infinite alternate; }
+    @keyframes arr-l { from{opacity:.3;transform:translateX(0)} to{opacity:1;transform:translateX(-5px)} }
+    @keyframes arr-r { from{opacity:.3;transform:translateX(0)} to{opacity:1;transform:translateX(5px)} }
+
+    .join-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, #cc0000 0%, #ff1111 50%, #cc0000 100%);
+      color: #fff;
+      font-family: 'Montserrat', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(18px, 5vw, 24px);
+      font-weight: 900; text-decoration: none;
+      padding: 18px 32px; border-radius: 14px;
+      text-transform: uppercase; letter-spacing: .5px;
+      box-shadow: 0 8px 30px rgba(255,0,0,.6);
+      animation: btn-pulse 1.1s ease-in-out infinite;
+      overflow: hidden; position: relative;
+      min-width: 240px; text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @keyframes btn-pulse {
+      0%,100% { transform: scale(1);    box-shadow: 0 8px 30px rgba(255,0,0,.6); }
+      50%      { transform: scale(1.05); box-shadow: 0 12px 50px rgba(255,0,0,.9); }
+    }
+    .join-btn::before {
+      content: '';
+      position: absolute; top:0; left:-100%;
+      width:60%; height:100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%{left:-100%} 100%{left:200%} }
+    .join-btn:active { transform: scale(.96); }
+
+    /* ── BOTTOM FEATURES ── */
+    .features-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; width: 100%; max-width: 500px; margin-bottom: 20px;
+    }
+    .feat-box {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(45,158,45,.35);
+      border-radius: 12px; padding: 14px 12px;
+      text-align: center;
+    }
+    .feat-box .f-icon { font-size: 28px; display: block; margin-bottom: 8px; }
+    .feat-box .f-text {
+      font-size: clamp(12px, 3.2vw, 14px);
+      color: #bbddbb; font-weight: 600; line-height: 1.4;
+    }
+
+    /* ── URGENCY STRIP ── */
+    .urgency {
+      background: linear-gradient(90deg,#cc0000,#ff4400,#cc0000);
+      background-size: 200% 100%;
+      animation: urg 2s linear infinite;
+      color: #fff; font-weight: 900;
+      font-size: clamp(13px, 3.8vw, 16px);
+      padding: 14px 20px; border-radius: 10px;
+      text-align: center; width: 100%; max-width: 500px;
+      margin-bottom: 20px; letter-spacing: .5px;
+    }
+    @keyframes urg { 0%{background-position:0%} 100%{background-position:200%} }
+
+    /* ── FOOTER ── */
+    .footer {
+      color: #556655; font-size: 12px;
+      text-align: center; max-width: 420px; line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="bg-anim"></div>
+
+<!-- Floating leaves -->
+<div class="leaf" style="left:5%;  animation-duration:10s; animation-delay:0s;">🌿</div>
+<div class="leaf" style="left:18%; animation-duration:13s; animation-delay:2s;">🍃</div>
+<div class="leaf" style="left:33%; animation-duration:9s;  animation-delay:1s;">🌱</div>
+<div class="leaf" style="left:52%; animation-duration:12s; animation-delay:3s;">🌿</div>
+<div class="leaf" style="left:68%; animation-duration:11s; animation-delay:0.5s;">🍃</div>
+<div class="leaf" style="left:82%; animation-duration:8s;  animation-delay:1.5s;">🌱</div>
+<div class="leaf" style="left:92%; animation-duration:14s; animation-delay:4s;">🌿</div>
+
+<div class="page">
+
+  <!-- TOP BADGE -->
+  <div class="top-badge">🌿 प्राचीन ज्ञान, आधुनिक समाधान! 🌿</div>
+
+  <!-- HERO JOIN BUTTON — visible immediately on load -->
+  <div class="arrow-section" style="margin-bottom:8px">
+    <div class="arrow-row">
+      <span class="arrow">&#9660;</span>
+      <span class="arrow">&#9660;</span>
+      <span class="arrow">&#9660;</span>
+    </div>
+  </div>
+  <div class="join-wrap" style="margin-bottom:20px">
+    <span class="side-arr l">&#9658;&#9658;</span>
+    <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
+      📲 अभी जुड़ें — FREE!
+    </a>
+    <span class="side-arr r">&#9668;&#9668;</span>
+  </div>
+
+  <!-- POSTER IMAGE -->
+  <div class="poster-wrap">
+    <img src="poster.jpg" alt="नाड़ी परीक्षा एवं मर्म थेरेपी" onerror="this.parentElement.style.display='none'" />
+    <div class="poster-ribbon">🔴 LIVE TONIGHT!</div>
+  </div>
+
+  <!-- MAIN HEADLINE -->
+  <div class="main-headline">
+    <h1>नाड़ी परीक्षा<br>एवं<br><span class="red">मर्म थेरेपी</span></h1>
+    <div class="sub">का ज्ञान प्राप्त करें!</div>
+  </div>
+
+  <!-- THREE BENEFITS CHIPS -->
+  <div class="benefits-row">
+    <div class="benefit-chip">
+      <span class="b-icon">💓</span>
+      <span class="b-text">स्वस्थ जीवन<br>की ओर कदम</span>
+    </div>
+    <div class="benefit-chip">
+      <span class="b-icon">🧘</span>
+      <span class="b-text">प्राचीन विज्ञान,<br>आधुनिक लाभ</span>
+    </div>
+    <div class="benefit-chip">
+      <span class="b-icon">🌱</span>
+      <span class="b-text">प्राकृतिक उपचार,<br>संपूर्ण स्वास्थ्य</span>
+    </div>
+  </div>
+
+  <!-- TIME BOX -->
+  <div class="time-box">
+    <div class="time-label">📅 आज रात</div>
+    <div class="time-clock">9:00</div>
+    <div class="time-baje">बजे</div>
+    <div class="free-badge">📡 फ्री वेबिनार</div>
+    <div class="golden-text">में भाग लेने का सुनहरा अवसर!</div>
+  </div>
+
+  <!-- WHAT YOU LEARN -->
+  <div class="card">
+    <div class="card-title">📜 क्या सीखेंगे?</div>
+    <div class="learn-item">
+      <span class="learn-check">✅</span>
+      <span>नाड़ी परीक्षा की संपूर्ण जानकारी</span>
+    </div>
+    <div class="learn-item">
+      <span class="learn-check">✅</span>
+      <span>मर्म बिंदुओं की पहचान और लाभ</span>
+    </div>
+    <div class="learn-item">
+      <span class="learn-check">✅</span>
+      <span>आयुर्वेदिक उपचार की गहरी समझ</span>
+    </div>
+    <div class="learn-item">
+      <span class="learn-check">✅</span>
+      <span>स्वस्थ जीवन के प्राकृतिक उपाय</span>
+    </div>
+  </div>
+
+  <!-- ARROWS POINTING DOWN -->
+  <div class="arrow-section">
+    <div class="arrow-row">
+      <span class="arrow">&#9660;</span>
+      <span class="arrow">&#9660;</span>
+      <span class="arrow">&#9660;</span>
+    </div>
+    <div class="arrow-row">
+      <span class="arrow" style="font-size:46px">&#9660;</span>
+      <span class="arrow" style="font-size:46px;animation-delay:.15s">&#9660;</span>
+    </div>
+  </div>
+
+  <!-- WHATSAPP JOIN BUTTON -->
+  <div class="join-wrap">
+    <span class="side-arr l">&#9658;&#9658;</span>
+    <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
+      📲 अभी जुड़ें — FREE!
+    </a>
+    <span class="side-arr r">&#9668;&#9668;</span>
+  </div>
+
+  <p style="color:#888;font-size:13px;text-align:center;margin-bottom:24px;">
+    👆 ऊपर दिए बटन को दबाएं और FREE Webinar से जुड़ें
+  </p>
+
+  <!-- BOTTOM FEATURES GRID -->
+  <div class="features-grid">
+    <div class="feat-box">
+      <span class="f-icon">🏆</span>
+      <span class="f-text">विशेषज्ञों द्वारा मार्गदर्शन</span>
+    </div>
+    <div class="feat-box">
+      <span class="f-icon">🎙️</span>
+      <span class="f-text">लाइव सेशन में सवाल पूछने का मौका</span>
+    </div>
+    <div class="feat-box">
+      <span class="f-icon">▶️</span>
+      <span class="f-text">रिकॉर्डिंग की सुविधा</span>
+    </div>
+    <div class="feat-box">
+      <span class="f-icon">🎁</span>
+      <span class="f-text">प्रतिभागियों के लिए विशेष उपहार</span>
+    </div>
+  </div>
+
+  <!-- URGENCY STRIP -->
+  <div class="urgency">
+    ⏰ &nbsp; सीमित सीटें — आज ही जुड़ें, देर मत करें! &nbsp; ⏰
+  </div>
+
+  <!-- ARROWS POINTING UP (second button) -->
+  <div class="arrow-section" style="margin-bottom:10px">
+    <div class="arrow-row">
+      <span class="arrow" style="font-size:32px">&#9650;</span>
+      <span class="arrow" style="font-size:32px;animation-delay:.1s">&#9650;</span>
+      <span class="arrow" style="font-size:32px;animation-delay:.2s">&#9650;</span>
+    </div>
+  </div>
+
+  <!-- SECOND JOIN BUTTON -->
+  <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer" style="margin-bottom:30px;">
+    📲 WhatsApp Community — अभी जुड़ें!
+  </a>
+
+  <div class="footer">
+    WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।<br>
+    यह समुदाय पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।
+  </div>
+
+</div>
+<!-- STICKY ALWAYS-VISIBLE JOIN BAR -->
+<div class="sticky-bar">
+  <span class="sticky-arrow">&#9658;&#9658;</span>
+  <a class="sticky-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
+    📲 अभी जुड़ें — FREE!
+  </a>
+  <span class="sticky-arrow r">&#9668;&#9668;</span>
+</div>
+
+</body>
+</html>
