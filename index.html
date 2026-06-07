@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>नाड़ी परीक्षा एवं मर्म थेरेपी - FREE Webinar</title>
+  <title id="page-title">Loading…</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Montserrat:wght@700;900&display=swap');
 
@@ -13,7 +13,7 @@
       background: #0d1f0d;
       font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
       overflow-x: hidden;
-      padding-bottom: 100px; /* space for sticky bar */
+      padding-bottom: 100px;
     }
 
     /* ── STICKY BOTTOM JOIN BAR ── */
@@ -44,9 +44,7 @@
       from { opacity:.3; transform:translateX(0); }
       to   { opacity:1;  transform:translateX(-5px); }
     }
-    .sticky-arrow.r {
-      animation-name: arr-blink-r;
-    }
+    .sticky-arrow.r { animation-name: arr-blink-r; }
     @keyframes arr-blink-r {
       from { opacity:.3; transform:translateX(0); }
       to   { opacity:1;  transform:translateX(5px); }
@@ -149,9 +147,7 @@
       0%,100% { box-shadow: 0 0 40px rgba(45,158,45,.6), 0 0 80px rgba(45,158,45,.3); }
       50%      { box-shadow: 0 0 60px rgba(45,158,45,.9), 0 0 120px rgba(255,232,124,.3); }
     }
-    .poster-wrap img {
-      width: 100%; display: block;
-    }
+    .poster-wrap img { width: 100%; display: block; }
     .poster-wrap .poster-ribbon {
       position: absolute; top: 14px; right: -8px;
       background: #cc0000; color: #fff;
@@ -329,7 +325,6 @@
       0%   { background-position: 0% 50%; }
       100% { background-position: 200% 50%; }
     }
-
     .side-arr {
       color: #cc0000; font-size: 30px;
       text-shadow: 0 0 12px rgba(204,0,0,.8);
@@ -407,174 +402,231 @@
 </head>
 <body>
 <div class="bg-anim"></div>
+<div class="page" id="page-root"></div>
+<div class="sticky-bar" id="sticky-bar"></div>
 
-<!-- Floating leaves -->
-<div class="leaf" style="left:5%;  animation-duration:10s; animation-delay:0s;">🌿</div>
-<div class="leaf" style="left:18%; animation-duration:13s; animation-delay:2s;">🍃</div>
-<div class="leaf" style="left:33%; animation-duration:9s;  animation-delay:1s;">🌱</div>
-<div class="leaf" style="left:52%; animation-duration:12s; animation-delay:3s;">🌿</div>
-<div class="leaf" style="left:68%; animation-duration:11s; animation-delay:0.5s;">🍃</div>
-<div class="leaf" style="left:82%; animation-duration:8s;  animation-delay:1.5s;">🌱</div>
-<div class="leaf" style="left:92%; animation-duration:14s; animation-delay:4s;">🌿</div>
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  TEMPLATE CONFIG — EDIT ONLY THIS SECTION
+   📝  सिर्फ यहाँ बदलाव करें — बाकी कुछ न छुएं
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
 
-<div class="page">
+  /* ── Browser tab title ── */
+  pageTitle: "नाड़ी परीक्षा एवं मर्म थेरेपी - FREE Webinar",
 
-  <!-- TOP BADGE -->
-  <div class="top-badge">🌿 प्राचीन ज्ञान, आधुनिक समाधान! 🌿</div>
+  /* ── WhatsApp group / community link ──
+     Replace with your client's actual WhatsApp invite link */
+  whatsappLink: "https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM",
 
-  <!-- HERO JOIN BUTTON — visible immediately on load -->
-  <div class="arrow-section" style="margin-bottom:8px">
-    <div class="arrow-row">
-      <span class="arrow">&#9660;</span>
-      <span class="arrow">&#9660;</span>
-      <span class="arrow">&#9660;</span>
-    </div>
-  </div>
-  <div class="join-wrap" style="margin-bottom:20px">
-    <span class="side-arr l">&#9658;&#9658;</span>
-    <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
-      📲 अभी जुड़ें — FREE!
-    </a>
-    <span class="side-arr r">&#9668;&#9668;</span>
-  </div>
+  /* ── Top green badge text ── */
+  topBadge: "🌿 प्राचीन ज्ञान, आधुनिक समाधान! 🌿",
 
-  <!-- POSTER IMAGE -->
-  <div class="poster-wrap">
-    <img src="poster.jpg" alt="नाड़ी परीक्षा एवं मर्म थेरेपी" onerror="this.parentElement.style.display='none'" />
-    <div class="poster-ribbon">🔴 LIVE TONIGHT!</div>
-  </div>
+  /* ── Poster image ──
+     Put the image file next to index.html and write the filename here.
+     Or use a full URL like "https://example.com/poster.jpg" */
+  posterImage: "poster.jpg",
 
-  <!-- MAIN HEADLINE -->
-  <div class="main-headline">
-    <h1>नाड़ी परीक्षा<br>एवं<br><span class="red">मर्म थेरेपी</span></h1>
-    <div class="sub">का ज्ञान प्राप्त करें!</div>
-  </div>
+  /* ── Red ribbon on the poster corner ── */
+  posterRibbon: "🔴 LIVE TONIGHT!",
 
-  <!-- THREE BENEFITS CHIPS -->
-  <div class="benefits-row">
-    <div class="benefit-chip">
-      <span class="b-icon">💓</span>
-      <span class="b-text">स्वस्थ जीवन<br>की ओर कदम</span>
-    </div>
-    <div class="benefit-chip">
-      <span class="b-icon">🧘</span>
-      <span class="b-text">प्राचीन विज्ञान,<br>आधुनिक लाभ</span>
-    </div>
-    <div class="benefit-chip">
-      <span class="b-icon">🌱</span>
-      <span class="b-text">प्राकृतिक उपचार,<br>संपूर्ण स्वास्थ्य</span>
-    </div>
-  </div>
+  /* ── Main headline (line 1 and line 2 are white, line 3 "red" is in red) ── */
+  headlineLine1: "नाड़ी परीक्षा",
+  headlineLine2: "एवं",
+  headlineRed:   "मर्म थेरेपी",   /* shown in red */
+  headlineSub:   "का ज्ञान प्राप्त करें!",
 
-  <!-- TIME BOX -->
-  <div class="time-box">
-    <div class="time-label">📅 आज रात</div>
-    <div class="time-clock">9:00</div>
-    <div class="time-baje">बजे</div>
-    <div class="free-badge">📡 फ्री वेबिनार</div>
-    <div class="golden-text">में भाग लेने का सुनहरा अवसर!</div>
-  </div>
+  /* ── Three benefit chips below the headline ──
+     You can have 2, 3, or 4 chips — just add/remove items */
+  benefits: [
+    { icon: "💓", text: "स्वस्थ जीवन<br>की ओर कदम" },
+    { icon: "🧘", text: "प्राचीन विज्ञान,<br>आधुनिक लाभ" },
+    { icon: "🌱", text: "प्राकृतिक उपचार,<br>संपूर्ण स्वास्थ्य" },
+  ],
 
-  <!-- WHAT YOU LEARN -->
-  <div class="card">
-    <div class="card-title">📜 क्या सीखेंगे?</div>
-    <div class="learn-item">
-      <span class="learn-check">✅</span>
-      <span>नाड़ी परीक्षा की संपूर्ण जानकारी</span>
-    </div>
-    <div class="learn-item">
-      <span class="learn-check">✅</span>
-      <span>मर्म बिंदुओं की पहचान और लाभ</span>
-    </div>
-    <div class="learn-item">
-      <span class="learn-check">✅</span>
-      <span>आयुर्वेदिक उपचार की गहरी समझ</span>
-    </div>
-    <div class="learn-item">
-      <span class="learn-check">✅</span>
-      <span>स्वस्थ जीवन के प्राकृतिक उपाय</span>
-    </div>
-  </div>
+  /* ── Time box ── */
+  timeLabel:   "📅 आज रात",   /* e.g. "📅 कल शाम" */
+  timeClock:   "9:00",         /* just the time digits */
+  timeSuffix:  "बजे",
+  eventBadge:  "📡 फ्री वेबिनार",
+  eventTagline: "में भाग लेने का सुनहरा अवसर!",
 
-  <!-- ARROWS POINTING DOWN -->
-  <div class="arrow-section">
-    <div class="arrow-row">
-      <span class="arrow">&#9660;</span>
-      <span class="arrow">&#9660;</span>
-      <span class="arrow">&#9660;</span>
-    </div>
-    <div class="arrow-row">
-      <span class="arrow" style="font-size:46px">&#9660;</span>
-      <span class="arrow" style="font-size:46px;animation-delay:.15s">&#9660;</span>
-    </div>
-  </div>
+  /* ── "What you'll learn" card ── */
+  learnTitle: "📜 क्या सीखेंगे?",
+  learnItems: [
+    "नाड़ी परीक्षा की संपूर्ण जानकारी",
+    "मर्म बिंदुओं की पहचान और लाभ",
+    "आयुर्वेदिक उपचार की गहरी समझ",
+    "स्वस्थ जीवन के प्राकृतिक उपाय",
+  ],
 
-  <!-- WHATSAPP JOIN BUTTON -->
-  <div class="join-wrap">
-    <span class="side-arr l">&#9658;&#9658;</span>
-    <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
-      📲 अभी जुड़ें — FREE!
-    </a>
-    <span class="side-arr r">&#9668;&#9668;</span>
-  </div>
+  /* ── Button labels ── */
+  btnPrimary: "📲 अभी जुड़ें — FREE!",
+  btnSecond:  "📲 WhatsApp Community — अभी जुड़ें!",
+  btnHint:    "👆 ऊपर दिए बटन को दबाएं और FREE Webinar से जुड़ें",
 
-  <p style="color:#888;font-size:13px;text-align:center;margin-bottom:24px;">
-    👆 ऊपर दिए बटन को दबाएं और FREE Webinar से जुड़ें
-  </p>
+  /* ── Feature boxes (2 × 2 grid) ──
+     You can have 2, 4, or 6 items */
+  features: [
+    { icon: "🏆", text: "विशेषज्ञों द्वारा मार्गदर्शन" },
+    { icon: "🎙️", text: "लाइव सेशन में सवाल पूछने का मौका" },
+    { icon: "▶️", text: "रिकॉर्डिंग की सुविधा" },
+    { icon: "🎁", text: "प्रतिभागियों के लिए विशेष उपहार" },
+  ],
 
-  <!-- BOTTOM FEATURES GRID -->
-  <div class="features-grid">
-    <div class="feat-box">
-      <span class="f-icon">🏆</span>
-      <span class="f-text">विशेषज्ञों द्वारा मार्गदर्शन</span>
-    </div>
-    <div class="feat-box">
-      <span class="f-icon">🎙️</span>
-      <span class="f-text">लाइव सेशन में सवाल पूछने का मौका</span>
-    </div>
-    <div class="feat-box">
-      <span class="f-icon">▶️</span>
-      <span class="f-text">रिकॉर्डिंग की सुविधा</span>
-    </div>
-    <div class="feat-box">
-      <span class="f-icon">🎁</span>
-      <span class="f-text">प्रतिभागियों के लिए विशेष उपहार</span>
-    </div>
-  </div>
+  /* ── Urgency strip ── */
+  urgencyText: "⏰ &nbsp; सीमित सीटें — आज ही जुड़ें, देर मत करें! &nbsp; ⏰",
 
-  <!-- URGENCY STRIP -->
-  <div class="urgency">
-    ⏰ &nbsp; सीमित सीटें — आज ही जुड़ें, देर मत करें! &nbsp; ⏰
-  </div>
+  /* ── Footer disclaimer ── */
+  footerLine1: "WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।",
+  footerLine2: "यह समुदाय पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।",
 
-  <!-- ARROWS POINTING UP (second button) -->
-  <div class="arrow-section" style="margin-bottom:10px">
-    <div class="arrow-row">
-      <span class="arrow" style="font-size:32px">&#9650;</span>
-      <span class="arrow" style="font-size:32px;animation-delay:.1s">&#9650;</span>
-      <span class="arrow" style="font-size:32px;animation-delay:.2s">&#9650;</span>
-    </div>
-  </div>
+};
+/* ═══════════════════════════════════════════════════════════════════════════
+   ⛔  DO NOT EDIT BELOW THIS LINE — नीचे कुछ न बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+</script>
 
-  <!-- SECOND JOIN BUTTON -->
-  <a class="join-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer" style="margin-bottom:30px;">
-    📲 WhatsApp Community — अभी जुड़ें!
-  </a>
+<script>
+  /* Floating leaves — decorative, no need to edit */
+  const leafPositions = [
+    {l:'5%',  d:'10s', delay:'0s',   e:'🌿'},
+    {l:'18%', d:'13s', delay:'2s',   e:'🍃'},
+    {l:'33%', d:'9s',  delay:'1s',   e:'🌱'},
+    {l:'52%', d:'12s', delay:'3s',   e:'🌿'},
+    {l:'68%', d:'11s', delay:'0.5s', e:'🍃'},
+    {l:'82%', d:'8s',  delay:'1.5s', e:'🌱'},
+    {l:'92%', d:'14s', delay:'4s',   e:'🌿'},
+  ];
+  leafPositions.forEach(function(lp) {
+    var el = document.createElement('div');
+    el.className = 'leaf';
+    el.style.cssText = 'left:' + lp.l + ';animation-duration:' + lp.d + ';animation-delay:' + lp.delay + ';';
+    el.textContent = lp.e;
+    document.body.appendChild(el);
+  });
 
-  <div class="footer">
-    WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।<br>
-    यह समुदाय पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।
-  </div>
+  function link(text, extraStyle) {
+    return '<a class="join-btn" href="' + CONFIG.whatsappLink + '" target="_blank" rel="noopener noreferrer"'
+      + (extraStyle ? ' style="' + extraStyle + '"' : '') + '>' + text + '</a>';
+  }
 
-</div>
-<!-- STICKY ALWAYS-VISIBLE JOIN BAR -->
-<div class="sticky-bar">
-  <span class="sticky-arrow">&#9658;&#9658;</span>
-  <a class="sticky-btn" href="https://chat.whatsapp.com/HXfRy7Q4YLmLSSwLsvYDPM" target="_blank" rel="noopener noreferrer">
-    📲 अभी जुड़ें — FREE!
-  </a>
-  <span class="sticky-arrow r">&#9668;&#9668;</span>
-</div>
+  function joinWrap(btnText, wrapStyle) {
+    return '<div class="join-wrap"' + (wrapStyle ? ' style="' + wrapStyle + '"' : '') + '>'
+      + '<span class="side-arr l">&#9658;&#9658;</span>'
+      + link(btnText)
+      + '<span class="side-arr r">&#9668;&#9668;</span>'
+      + '</div>';
+  }
 
+  function arrowsDown(large) {
+    var base = '<div class="arrow-section"' + (large ? '' : ' style="margin-bottom:8px"') + '>'
+      + '<div class="arrow-row">'
+      + '<span class="arrow">&#9660;</span>'
+      + '<span class="arrow">&#9660;</span>'
+      + '<span class="arrow">&#9660;</span>'
+      + '</div>';
+    if (large) {
+      base += '<div class="arrow-row">'
+        + '<span class="arrow" style="font-size:46px">&#9660;</span>'
+        + '<span class="arrow" style="font-size:46px;animation-delay:.15s">&#9660;</span>'
+        + '</div>';
+    }
+    return base + '</div>';
+  }
+
+  var benefitsHTML = CONFIG.benefits.map(function(b) {
+    return '<div class="benefit-chip"><span class="b-icon">' + b.icon + '</span>'
+      + '<span class="b-text">' + b.text + '</span></div>';
+  }).join('');
+
+  var learnHTML = CONFIG.learnItems.map(function(item) {
+    return '<div class="learn-item"><span class="learn-check">✅</span><span>' + item + '</span></div>';
+  }).join('');
+
+  var featuresHTML = CONFIG.features.map(function(f) {
+    return '<div class="feat-box"><span class="f-icon">' + f.icon + '</span>'
+      + '<span class="f-text">' + f.text + '</span></div>';
+  }).join('');
+
+  document.title = CONFIG.pageTitle;
+
+  document.getElementById('page-root').innerHTML =
+    /* top badge */
+    '<div class="top-badge">' + CONFIG.topBadge + '</div>'
+
+    /* hero arrows + first join button */
+    + arrowsDown(false)
+    + joinWrap(CONFIG.btnPrimary, 'margin-bottom:20px')
+
+    /* poster */
+    + '<div class="poster-wrap">'
+    + '<img src="' + CONFIG.posterImage + '" alt="" onerror="this.parentElement.style.display=\'none\'" />'
+    + '<div class="poster-ribbon">' + CONFIG.posterRibbon + '</div>'
+    + '</div>'
+
+    /* main headline */
+    + '<div class="main-headline">'
+    + '<h1>' + CONFIG.headlineLine1 + '<br>' + CONFIG.headlineLine2 + '<br>'
+    + '<span class="red">' + CONFIG.headlineRed + '</span></h1>'
+    + '<div class="sub">' + CONFIG.headlineSub + '</div>'
+    + '</div>'
+
+    /* benefits chips */
+    + '<div class="benefits-row">' + benefitsHTML + '</div>'
+
+    /* time box */
+    + '<div class="time-box">'
+    + '<div class="time-label">' + CONFIG.timeLabel + '</div>'
+    + '<div class="time-clock">' + CONFIG.timeClock + '</div>'
+    + '<div class="time-baje">' + CONFIG.timeSuffix + '</div>'
+    + '<div class="free-badge">' + CONFIG.eventBadge + '</div>'
+    + '<div class="golden-text">' + CONFIG.eventTagline + '</div>'
+    + '</div>'
+
+    /* what you learn */
+    + '<div class="card">'
+    + '<div class="card-title">' + CONFIG.learnTitle + '</div>'
+    + learnHTML
+    + '</div>'
+
+    /* arrows down (large) */
+    + arrowsDown(true)
+
+    /* main join button */
+    + joinWrap(CONFIG.btnPrimary)
+
+    /* hint text */
+    + '<p style="color:#888;font-size:13px;text-align:center;margin-bottom:24px;">'
+    + CONFIG.btnHint + '</p>'
+
+    /* features grid */
+    + '<div class="features-grid">' + featuresHTML + '</div>'
+
+    /* urgency strip */
+    + '<div class="urgency">' + CONFIG.urgencyText + '</div>'
+
+    /* arrows up */
+    + '<div class="arrow-section" style="margin-bottom:10px">'
+    + '<div class="arrow-row">'
+    + '<span class="arrow" style="font-size:32px">&#9650;</span>'
+    + '<span class="arrow" style="font-size:32px;animation-delay:.1s">&#9650;</span>'
+    + '<span class="arrow" style="font-size:32px;animation-delay:.2s">&#9650;</span>'
+    + '</div></div>'
+
+    /* second join button */
+    + link(CONFIG.btnSecond, 'margin-bottom:30px;')
+
+    /* footer */
+    + '<div class="footer">' + CONFIG.footerLine1 + '<br>' + CONFIG.footerLine2 + '</div>';
+
+  /* sticky bar */
+  document.getElementById('sticky-bar').innerHTML =
+    '<span class="sticky-arrow">&#9658;&#9658;</span>'
+    + '<a class="sticky-btn" href="' + CONFIG.whatsappLink + '" target="_blank" rel="noopener noreferrer">'
+    + CONFIG.btnPrimary
+    + '</a>'
+    + '<span class="sticky-arrow r">&#9668;&#9668;</span>';
+</script>
 </body>
 </html>
