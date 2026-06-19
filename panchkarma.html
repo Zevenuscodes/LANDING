@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Loading…</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Montserrat:wght@700;900&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body {
+      background:#faf6ee;
+      font-family:'Noto Sans Devanagari','Montserrat',sans-serif;
+      overflow-x:hidden;
+      padding-bottom:100px;
+    }
+
+    /* ── BG ── */
+    .bg-decor{position:fixed;inset:0;z-index:-1;
+      background:linear-gradient(170deg,#f0ebe0 0%,#faf6ee 40%,#f5efe2 100%);}
+    .bg-decor::before{content:'';position:fixed;top:-120px;right:-120px;
+      width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(180,100,20,.06) 0%,transparent 70%);}
+    .bg-decor::after{content:'';position:fixed;bottom:-100px;left:-100px;
+      width:450px;height:450px;border-radius:50%;
+      background:radial-gradient(circle,rgba(120,60,10,.05) 0%,transparent 70%);}
+
+    /* ── STICKY BAR ── */
+    .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;
+      background:linear-gradient(135deg,#5c2d0a,#7a3a10);
+      border-top:3px solid #d4a040;
+      padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:10px;
+      box-shadow:0 -6px 30px rgba(92,45,10,.4);animation:sticky-appear .4s ease-out;}
+    @keyframes sticky-appear{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .sticky-arrow{color:#d4a040;font-size:24px;animation:arr-blink .6s ease-in-out infinite alternate;}
+    @keyframes arr-blink{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
+    .sticky-arrow.r{animation-name:arr-blink-r;}
+    @keyframes arr-blink-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
+    .sticky-btn{flex:1;max-width:380px;display:flex;align-items:center;justify-content:center;gap:8px;
+      background:linear-gradient(135deg,#b8760a 0%,#daa520 50%,#b8760a 100%);
+      color:#3a1800;font-family:'Montserrat',sans-serif;
+      font-size:clamp(16px,4.5vw,21px);font-weight:900;
+      text-decoration:none;padding:14px 20px;border-radius:12px;
+      text-transform:uppercase;letter-spacing:.5px;
+      box-shadow:0 4px 20px rgba(180,110,10,.5);
+      animation:sticky-pulse 1s ease-in-out infinite;
+      overflow:hidden;position:relative;-webkit-tap-highlight-color:transparent;}
+    @keyframes sticky-pulse{
+      0%,100%{box-shadow:0 4px 20px rgba(180,110,10,.5);transform:scale(1)}
+      50%    {box-shadow:0 6px 35px rgba(180,110,10,.8);transform:scale(1.03)}}
+    .sticky-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      animation:shimmer 1.8s ease-in-out infinite;}
+    @keyframes shimmer{0%{left:-100%}100%{left:200%}}
+
+    /* ── PAGE ── */
+    .page{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+      padding:16px 14px 50px;}
+
+    /* ── TOP BADGE ── */
+    .top-badge{
+      background:linear-gradient(90deg,#5c2d0a,#8b5a1e,#5c2d0a);
+      color:#f5d76e;font-size:clamp(12px,3.5vw,15px);font-weight:700;
+      padding:10px 22px;border-radius:30px;margin-bottom:14px;
+      border:2px solid #d4a040;
+      box-shadow:0 4px 20px rgba(92,45,10,.35);
+      animation:badge-pulse 2.5s ease-in-out infinite;text-align:center;}
+    @keyframes badge-pulse{
+      0%,100%{box-shadow:0 4px 20px rgba(92,45,10,.35)}
+      50%    {box-shadow:0 6px 35px rgba(92,45,10,.6)}}
+
+    /* ── POSTER ── */
+    .poster-wrap{width:100%;max-width:500px;border-radius:20px;overflow:hidden;
+      border:4px solid #8b5a1e;
+      box-shadow:0 8px 40px rgba(92,45,10,.2),0 2px 8px rgba(0,0,0,.1);
+      margin-bottom:24px;position:relative;animation:poster-glow 3s ease-in-out infinite;}
+    @keyframes poster-glow{
+      0%,100%{box-shadow:0 8px 40px rgba(92,45,10,.2),0 2px 8px rgba(0,0,0,.1)}
+      50%    {box-shadow:0 12px 55px rgba(92,45,10,.35),0 2px 8px rgba(0,0,0,.1)}}
+    .poster-wrap img{width:100%;display:block;}
+    .poster-ribbon{position:absolute;top:16px;right:-8px;
+      background:#8b5a1e;color:#f5d76e;
+      font-size:12px;font-weight:900;
+      padding:6px 18px 6px 12px;border-radius:4px 0 0 4px;
+      box-shadow:0 2px 8px rgba(0,0,0,.4);
+      animation:flicker 1.5s infinite;letter-spacing:.5px;
+      border:1px solid #d4a040;}
+    @keyframes flicker{0%,94%,100%{opacity:1}95%{opacity:.3}97%{opacity:1}98%{opacity:.2}}
+
+    /* ── HERO ── */
+    .hero{text-align:center;width:100%;max-width:500px;margin-bottom:20px;}
+    .hero .pre{font-size:clamp(14px,4vw,17px);color:#8b5a1e;font-weight:700;margin-bottom:4px;}
+    .hero h1{font-size:clamp(32px,9vw,52px);font-weight:900;line-height:1.15;
+      color:#5c2d0a;
+      text-shadow:1px 1px 0 #f5d76e,0 0 20px rgba(180,110,10,.2);}
+    .hero h1 .gold{color:#b8760a;}
+    .hero .sub{font-size:clamp(16px,4.5vw,20px);color:#6a4020;font-weight:700;margin-top:8px;}
+
+    /* ── FIVE THERAPIES CHIPS ── */
+    .therapy-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .t-chip{
+      background:linear-gradient(135deg,#5c2d0a,#7a3a10);
+      color:#f5d76e;font-size:clamp(12px,3.2vw,14px);font-weight:900;
+      padding:10px 16px;border-radius:30px;border:1px solid #d4a040;
+      box-shadow:0 2px 10px rgba(92,45,10,.2);}
+
+    /* ── STAT ROW ── */
+    .stat-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+      width:100%;max-width:500px;margin-bottom:18px;}
+    .stat-card{background:#fff;border:2px solid #e8d4b0;border-radius:14px;
+      padding:14px 16px;flex:1;min-width:130px;text-align:center;
+      box-shadow:0 2px 12px rgba(0,0,0,.06);}
+    .stat-card .s-icon{font-size:28px;display:block;margin-bottom:6px;}
+    .stat-card .s-num{font-size:clamp(24px,6vw,32px);font-weight:900;color:#5c2d0a;
+      font-family:'Montserrat',sans-serif;line-height:1;}
+    .stat-card .s-label{font-size:clamp(11px,3vw,13px);color:#8b5a1e;font-weight:600;
+      line-height:1.4;margin-top:4px;}
+
+    /* ── WIDE INFO BAR ── */
+    .info-bar{background:#fff;border:2px solid #e8d4b0;border-radius:14px;
+      padding:14px 18px;width:100%;max-width:500px;text-align:center;
+      font-size:clamp(14px,3.8vw,17px);color:#5c2d0a;font-weight:700;
+      margin-bottom:18px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+    .info-bar .hl{color:#b8760a;font-weight:900;}
+
+    /* ── CARDS ── */
+    .card{background:#fff;border:1px solid #e8d4b0;border-radius:18px;
+      padding:20px 18px;width:100%;max-width:500px;margin-bottom:16px;
+      box-shadow:0 4px 20px rgba(0,0,0,.06);}
+    .card-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#5c2d0a;
+      text-align:center;margin-bottom:14px;padding-bottom:10px;
+      border-bottom:2px solid #f0e0c8;}
+
+    /* ── LEARN ITEMS ── */
+    .learn-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
+      border-bottom:1px solid #f5efe2;
+      font-size:clamp(14px,4vw,17px);color:#3a2010;font-weight:600;line-height:1.5;}
+    .learn-item:last-child{border-bottom:none;}
+    .learn-check{color:#8b5a1e;font-size:18px;flex-shrink:0;margin-top:2px;}
+
+    /* ── HIGHLIGHT ITEMS ── */
+    .highlights{display:flex;flex-direction:column;gap:10px;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .highlight-item{display:flex;align-items:center;gap:14px;
+      background:#fff;border:1px solid #e8d4b0;
+      border-left:5px solid #8b5a1e;
+      border-radius:12px;padding:14px 16px;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);}
+    .highlight-item .h-icon{font-size:28px;flex-shrink:0;}
+    .highlight-item .h-title{font-size:clamp(14px,3.8vw,16px);font-weight:900;color:#5c2d0a;line-height:1.3;}
+    .highlight-item .h-sub{font-size:clamp(12px,3.2vw,14px);color:#8b5a1e;font-weight:600;margin-top:2px;}
+
+    /* ── FEATURE GRID ── */
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;
+      gap:10px;width:100%;max-width:500px;margin-bottom:20px;}
+    .feat-box{background:#fff;border:1px solid #e8d4b0;border-radius:14px;
+      padding:16px 12px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+    .feat-box .f-icon{font-size:28px;display:block;margin-bottom:8px;}
+    .feat-box .f-text{font-size:clamp(12px,3.2vw,14px);color:#3a2010;font-weight:700;line-height:1.4;}
+
+    /* ── BONUS BOX ── */
+    .bonus-box{background:linear-gradient(135deg,#fff8e8,#fffdf5);
+      border:2px solid #d4a040;border-radius:18px;
+      padding:20px 18px;width:100%;max-width:500px;margin-bottom:20px;
+      box-shadow:0 4px 20px rgba(212,160,23,.12);}
+    .bonus-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#7a4000;
+      text-align:center;margin-bottom:14px;padding-bottom:10px;
+      border-bottom:2px solid #f0d880;}
+    .bonus-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
+      border-bottom:1px solid #f5edcc;
+      font-size:clamp(13px,3.8vw,16px);color:#5a3000;font-weight:700;line-height:1.5;}
+    .bonus-item:last-child{border-bottom:none;}
+
+    /* ── DIVIDER ── */
+    .divider{display:flex;align-items:center;gap:10px;
+      width:100%;max-width:500px;margin-bottom:16px;}
+    .divider-line{flex:1;height:2px;background:linear-gradient(90deg,transparent,#8b5a1e,transparent);}
+    .divider-text{font-size:clamp(13px,3.8vw,16px);font-weight:900;color:#5c2d0a;
+      white-space:nowrap;padding:0 6px;}
+
+    /* ── ARROWS ── */
+    .arrow-section{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;}
+    .arrow-row{display:flex;gap:8px;margin-bottom:2px;}
+    .arrow{color:#b8760a;font-size:34px;animation:bounce-d .6s ease-in-out infinite alternate;}
+    .arrow:nth-child(2){animation-delay:.1s}
+    .arrow:nth-child(3){animation-delay:.2s}
+    @keyframes bounce-d{from{transform:translateY(-6px);opacity:.5}to{transform:translateY(6px);opacity:1}}
+
+    /* ── JOIN BUTTON ── */
+    .join-wrap{position:relative;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .join-wrap::before,.join-wrap::after{content:'';position:absolute;inset:-5px;border-radius:18px;
+      background:linear-gradient(45deg,#8b5a1e,#d4a040,#8b5a1e,#b8760a);
+      background-size:300% 300%;animation:spin-border 2s linear infinite;z-index:-1;}
+    .join-wrap::after{filter:blur(12px);opacity:.6;}
+    @keyframes spin-border{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+    .side-arr{color:#b8760a;font-size:28px;}
+    .side-arr.l{animation:arr-l .7s ease-in-out infinite alternate;}
+    .side-arr.r{animation:arr-r .7s ease-in-out infinite alternate;}
+    @keyframes arr-l{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
+    @keyframes arr-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
+
+    .join-btn{display:flex;align-items:center;justify-content:center;gap:10px;
+      background:linear-gradient(135deg,#8b5a1e 0%,#b8760a 50%,#8b5a1e 100%);
+      color:#fff;font-family:'Montserrat','Noto Sans Devanagari',sans-serif;
+      font-size:clamp(18px,5vw,24px);font-weight:900;text-decoration:none;
+      padding:18px 32px;border-radius:14px;text-transform:uppercase;letter-spacing:.5px;
+      box-shadow:0 8px 30px rgba(139,90,30,.5);
+      animation:btn-pulse 1.1s ease-in-out infinite;
+      overflow:hidden;position:relative;min-width:240px;text-align:center;
+      -webkit-tap-highlight-color:transparent;}
+    @keyframes btn-pulse{
+      0%,100%{transform:scale(1);box-shadow:0 8px 30px rgba(139,90,30,.5)}
+      50%    {transform:scale(1.05);box-shadow:0 12px 50px rgba(139,90,30,.8)}}
+    .join-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+      animation:shimmer 2s ease-in-out infinite;}
+    .join-btn:active{transform:scale(.96);}
+
+    /* ── URGENCY ── */
+    .urgency{background:linear-gradient(90deg,#8b5a1e,#b8760a,#8b5a1e);
+      background-size:200% 100%;animation:urg 2s linear infinite;
+      color:#fff;font-weight:900;font-size:clamp(13px,3.8vw,16px);
+      padding:14px 20px;border-radius:12px;text-align:center;
+      width:100%;max-width:500px;margin-bottom:20px;letter-spacing:.5px;}
+    @keyframes urg{0%{background-position:0%}100%{background-position:200%}}
+
+    /* ── TRUST ── */
+    .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .trust-box{background:#fff;border:1px solid #e8d4b0;border-radius:12px;
+      padding:14px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .trust-box .t-icon{font-size:26px;display:block;margin-bottom:6px;}
+    .trust-box .t-text{font-size:clamp(11px,3vw,13px);color:#5c2d0a;font-weight:700;line-height:1.4;}
+
+    /* ── FOOTER ── */
+    .footer{color:#a09080;font-size:12px;text-align:center;max-width:420px;line-height:1.6;}
+  </style>
+</head>
+<body>
+<div class="bg-decor"></div>
+<div class="page" id="page-root"></div>
+<div class="sticky-bar" id="sticky-bar"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  TEMPLATE CONFIG — EDIT ONLY THIS SECTION
+   📝  सिर्फ यहाँ बदलाव करें — बाकी कुछ न छुएं
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  /* ── Browser tab title ── */
+  pageTitle: "पंचकर्म प्रशिक्षण — निःशुल्क वेबिनार",
+
+  /* ── WhatsApp community link ── */
+  whatsappLink: "https://chat.whatsapp.com/LtxK6MBD7QEBHk28Sqj9G6",
+
+  /* ── Top badge ── */
+  topBadge: "🙏 आयुर्वेद की सबसे शक्तिशाली चिकित्सा पद्धति 🙏",
+
+  /* ── Poster image ── */
+  posterImage: "panchkarma-poster.jpg",
+  posterRibbon: "🔴 FREE WEBINAR",
+
+  /* ── Hero headline ── */
+  heroPre: "सम्पूर्ण",
+  heroMain: "पंचकर्म",
+  heroGold: "प्रशिक्षण",
+  heroSub: "शरीर शुद्धि की पारंपरिक विधा सीखें!",
+
+  /* ── Five therapies of Panchkarma ── */
+  therapyChips: [
+    "वमन", "विरेचन", "बस्ति", "नस्य", "रक्तमोक्षण"
+  ],
+
+  /* ── Stats row ── */
+  stats: [
+    { icon: "📅", num: "5", label: "दिनों का\nगहन प्रशिक्षण" },
+    { icon: "🧑‍⚕️", num: "5000+", label: "प्रशिक्षित\nचिकित्सक" },
+  ],
+  infoBar: "👨‍⚕️ अनुभवी पंचकर्म विशेषज्ञों से <span class='hl'>लाइव मार्गदर्शन</span>",
+
+  /* ── Key highlights ── */
+  highlights: [
+    { icon: "🌿", title: "पांचों कर्मों की संपूर्ण क्रिया विधि", sub: "वमन, विरेचन, बस्ति, नस्य, रक्तमोक्षण" },
+    { icon: "📋", title: "पूर्वकर्म और पश्चात्कर्म की विस्तृत जानकारी", sub: "स्नेहन, स्वेदन, संसर्जन क्रम" },
+    { icon: "🏥", title: "क्लिनिक में पंचकर्म कैसे शुरू करें", sub: "सेटअप, उपकरण, रोगी प्रबंधन" },
+    { icon: "💰", title: "पंचकर्म से कमाई के अवसर", sub: "Wellness center और clinic business model" },
+  ],
+
+  /* ── What you'll learn ── */
+  learnTitle: "📜 इस वेबिनार में क्या सीखेंगे?",
+  learnItems: [
+    "पंचकर्म के मूल सिद्धांत और संहिता संदर्भ",
+    "प्रत्येक कर्म के लिए रोगी का चयन (Indication & Contraindication)",
+    "पूर्वकर्म — स्नेहन और स्वेदन की सही विधि",
+    "प्रधानकर्म — पांचों कर्मों की Step-by-Step प्रक्रिया",
+    "पश्चात्कर्म — संसर्जन क्रम और रोगी देखभाल",
+    "क्लिनिक सेटअप और बिजनेस मॉडल",
+  ],
+
+  /* ── Features grid ── */
+  features: [
+    { icon: "🎙️", text: "विशेषज्ञों द्वारा लाइव सेशन" },
+    { icon: "📄", text: "नोट्स, PDF और लाइव रिकॉर्डिंग" },
+    { icon: "🏅", text: "Certificate of Completion" },
+    { icon: "♾️", text: "Lifetime Community Access" },
+  ],
+
+  /* ── Bonus ── */
+  bonusTitle: "🎁 विशेष बोनस",
+  bonusItems: [
+    { icon: "📋", text: "पंचकर्म SOP (Standard Operating Procedure) PDF" },
+    { icon: "🎥", text: "Practical Demo Videos — Step-by-step" },
+    { icon: "💊", text: "औषधि योग और तैल निर्माण विधि" },
+    { icon: "🤝", text: "Hands-On Workshop में विशेष छूट" },
+  ],
+
+  /* ── Buttons ── */
+  btnText: "📲 अभी जुड़ें — FREE!",
+  btnHint: "👆 बटन दबाएं और निःशुल्क वेबिनार से जुड़ें",
+
+  /* ── Urgency ── */
+  urgencyText: "⏰ सीमित सीटें — आज ही जुड़ें, अगला बैच जल्द! ⏰",
+
+  /* ── Trust badges ── */
+  trustBadges: [
+    { icon: "🛡️", text: "100% प्रामाणिक शास्त्रीय ज्ञान" },
+    { icon: "👨‍⚕️", text: "अनुभवी पंचकर्म विशेषज्ञों की टीम" },
+    { icon: "📜", text: "चरक संहिता आधारित प्रशिक्षण" },
+    { icon: "⭐", text: "5000+ चिकित्सकों का भरोसा" },
+  ],
+
+  /* ── Footer ── */
+  footerLine1: "WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।",
+  footerLine2: "यह वेबिनार पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।",
+};
+/* ═══════════════════════════════════════════════════════════════════════════
+   ⛔  DO NOT EDIT BELOW THIS LINE — नीचे कुछ न बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+</script>
+
+<script>
+  function link(text,extraStyle){
+    return '<a class="join-btn" href="'+CONFIG.whatsappLink+'" target="_blank" rel="noopener noreferrer"'
+      +(extraStyle?' style="'+extraStyle+'"':'')+'>'+text+'</a>';}
+  function joinWrap(btnText,wrapStyle){
+    return '<div class="join-wrap"'+(wrapStyle?' style="'+wrapStyle+'"':'')+'>'
+      +'<span class="side-arr l">&#9658;&#9658;</span>'+link(btnText)
+      +'<span class="side-arr r">&#9668;&#9668;</span></div>';}
+  function arrowsDown(large){
+    var h='<div class="arrow-section"'+(large?'':' style="margin-bottom:6px"')+'>'
+      +'<div class="arrow-row"><span class="arrow">&#9660;</span><span class="arrow">&#9660;</span><span class="arrow">&#9660;</span></div>';
+    if(large)h+='<div class="arrow-row"><span class="arrow" style="font-size:44px">&#9660;</span>'
+      +'<span class="arrow" style="font-size:44px;animation-delay:.15s">&#9660;</span></div>';
+    return h+'</div>';}
+
+  var chipsHTML=CONFIG.therapyChips.map(function(c){return '<span class="t-chip">'+c+'</span>';}).join('');
+
+  var statsHTML=CONFIG.stats.map(function(s){
+    return '<div class="stat-card"><span class="s-icon">'+s.icon+'</span>'
+      +'<div class="s-num">'+s.num+'</div>'
+      +'<div class="s-label">'+s.label.replace('\n','<br>')+'</div></div>';}).join('');
+
+  var hlHTML=CONFIG.highlights.map(function(h){
+    return '<div class="highlight-item"><span class="h-icon">'+h.icon+'</span>'
+      +'<div><div class="h-title">'+h.title+'</div>'
+      +(h.sub?'<div class="h-sub">'+h.sub+'</div>':'')+'</div></div>';}).join('');
+
+  var learnHTML=CONFIG.learnItems.map(function(i){
+    return '<div class="learn-item"><span class="learn-check">✅</span><span>'+i+'</span></div>';}).join('');
+
+  var featHTML=CONFIG.features.map(function(f){
+    return '<div class="feat-box"><span class="f-icon">'+f.icon+'</span>'
+      +'<span class="f-text">'+f.text+'</span></div>';}).join('');
+
+  var bonusHTML=CONFIG.bonusItems.map(function(b){
+    return '<div class="bonus-item"><span style="font-size:18px;flex-shrink:0;margin-top:2px;">'+b.icon+'</span>'
+      +'<span>'+b.text+'</span></div>';}).join('');
+
+  var trustHTML=CONFIG.trustBadges.map(function(b){
+    return '<div class="trust-box"><span class="t-icon">'+b.icon+'</span>'
+      +'<span class="t-text">'+b.text+'</span></div>';}).join('');
+
+  document.title=CONFIG.pageTitle;
+
+  document.getElementById('page-root').innerHTML=
+
+    '<div class="top-badge">'+CONFIG.topBadge+'</div>'
+
+    +arrowsDown(false)
+    +joinWrap(CONFIG.btnText,'margin-bottom:18px')
+
+    +'<div class="poster-wrap">'
+    +'<img src="'+CONFIG.posterImage+'" alt="Panchkarma" onerror="this.parentElement.style.display=\'none\'" />'
+    +'<div class="poster-ribbon">'+CONFIG.posterRibbon+'</div></div>'
+
+    +'<div class="hero">'
+    +'<div class="pre">'+CONFIG.heroPre+'</div>'
+    +'<h1><span class="gold">'+CONFIG.heroMain+'</span><br>'+CONFIG.heroGold+'</h1>'
+    +'<div class="sub">'+CONFIG.heroSub+'</div></div>'
+
+    +'<div class="therapy-chips">'+chipsHTML+'</div>'
+
+    +'<div class="stat-row">'+statsHTML+'</div>'
+    +'<div class="info-bar">'+CONFIG.infoBar+'</div>'
+
+    +'<div class="highlights">'+hlHTML+'</div>'
+
+    +'<div class="card"><div class="card-title">'+CONFIG.learnTitle+'</div>'+learnHTML+'</div>'
+
+    +arrowsDown(true)
+    +joinWrap(CONFIG.btnText)
+    +'<p style="color:#999;font-size:13px;text-align:center;margin-bottom:24px;">'+CONFIG.btnHint+'</p>'
+
+    +'<div class="divider"><div class="divider-line"></div>'
+    +'<div class="divider-text">✨ आपको मिलेगा</div>'
+    +'<div class="divider-line"></div></div>'
+    +'<div class="feat-grid">'+featHTML+'</div>'
+
+    +'<div class="bonus-box"><div class="bonus-title">'+CONFIG.bonusTitle+'</div>'+bonusHTML+'</div>'
+
+    +'<div class="urgency">'+CONFIG.urgencyText+'</div>'
+
+    +'<div class="arrow-section" style="margin-bottom:8px"><div class="arrow-row">'
+    +'<span class="arrow" style="font-size:30px">&#9650;</span>'
+    +'<span class="arrow" style="font-size:30px;animation-delay:.1s">&#9650;</span>'
+    +'<span class="arrow" style="font-size:30px;animation-delay:.2s">&#9650;</span>'
+    +'</div></div>'
+    +link(CONFIG.btnText,'margin-bottom:28px;')
+
+    +'<div class="trust-grid">'+trustHTML+'</div>'
+
+    +'<div class="footer">'+CONFIG.footerLine1+'<br>'+CONFIG.footerLine2+'</div>';
+
+  document.getElementById('sticky-bar').innerHTML=
+    '<span class="sticky-arrow">&#9658;&#9658;</span>'
+    +'<a class="sticky-btn" href="'+CONFIG.whatsappLink+'" target="_blank" rel="noopener noreferrer">'
+    +CONFIG.btnText+'</a>'
+    +'<span class="sticky-arrow r">&#9668;&#9668;</span>';
+</script>
+</body>
+</html>
