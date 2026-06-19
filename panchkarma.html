@@ -9,48 +9,52 @@
 
     *{margin:0;padding:0;box-sizing:border-box;}
 
-    body {
-      background:#faf6ee;
+    body{
+      background:#0f0a25;
       font-family:'Noto Sans Devanagari','Montserrat',sans-serif;
-      overflow-x:hidden;
-      padding-bottom:100px;
+      overflow-x:hidden;padding-bottom:100px;
     }
 
     /* ── BG ── */
     .bg-decor{position:fixed;inset:0;z-index:-1;
-      background:linear-gradient(170deg,#f0ebe0 0%,#faf6ee 40%,#f5efe2 100%);}
-    .bg-decor::before{content:'';position:fixed;top:-120px;right:-120px;
-      width:500px;height:500px;border-radius:50%;
-      background:radial-gradient(circle,rgba(180,100,20,.06) 0%,transparent 70%);}
-    .bg-decor::after{content:'';position:fixed;bottom:-100px;left:-100px;
-      width:450px;height:450px;border-radius:50%;
-      background:radial-gradient(circle,rgba(120,60,10,.05) 0%,transparent 70%);}
+      background:linear-gradient(160deg,#0a0820 0%,#14103a 45%,#1a0e30 100%);}
+    .bg-decor::before{content:'';position:fixed;inset:0;
+      background:radial-gradient(ellipse at 50% 25%,rgba(255,140,0,.08) 0%,transparent 65%);
+      animation:bg-glow 5s ease-in-out infinite alternate;}
+    @keyframes bg-glow{from{opacity:.4}to{opacity:1}}
+
+    /* ── FLOATING ICONS ── */
+    .floater{position:fixed;font-size:20px;opacity:0;
+      animation:float-down linear infinite;pointer-events:none;z-index:0;}
+    @keyframes float-down{
+      0%{transform:translateY(-40px) rotate(0deg);opacity:0}
+      10%{opacity:.5}90%{opacity:.3}
+      100%{transform:translateY(105vh) rotate(360deg);opacity:0}}
 
     /* ── STICKY BAR ── */
     .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;
-      background:linear-gradient(135deg,#5c2d0a,#7a3a10);
-      border-top:3px solid #d4a040;
+      background:#0a0820;border-top:3px solid #ff8c00;
       padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:10px;
-      box-shadow:0 -6px 30px rgba(92,45,10,.4);animation:sticky-appear .4s ease-out;}
+      box-shadow:0 -6px 30px rgba(255,140,0,.4);animation:sticky-appear .4s ease-out;}
     @keyframes sticky-appear{from{transform:translateY(100%)}to{transform:translateY(0)}}
-    .sticky-arrow{color:#d4a040;font-size:24px;animation:arr-blink .6s ease-in-out infinite alternate;}
+    .sticky-arrow{color:#ff8c00;font-size:24px;animation:arr-blink .6s ease-in-out infinite alternate;}
     @keyframes arr-blink{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
     .sticky-arrow.r{animation-name:arr-blink-r;}
     @keyframes arr-blink-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
     .sticky-btn{flex:1;max-width:380px;display:flex;align-items:center;justify-content:center;gap:8px;
-      background:linear-gradient(135deg,#b8760a 0%,#daa520 50%,#b8760a 100%);
-      color:#3a1800;font-family:'Montserrat',sans-serif;
+      background:linear-gradient(135deg,#d47600 0%,#ff8c00 50%,#d47600 100%);
+      color:#fff;font-family:'Montserrat',sans-serif;
       font-size:clamp(16px,4.5vw,21px);font-weight:900;
       text-decoration:none;padding:14px 20px;border-radius:12px;
       text-transform:uppercase;letter-spacing:.5px;
-      box-shadow:0 4px 20px rgba(180,110,10,.5);
+      box-shadow:0 4px 20px rgba(255,140,0,.5);
       animation:sticky-pulse 1s ease-in-out infinite;
       overflow:hidden;position:relative;-webkit-tap-highlight-color:transparent;}
     @keyframes sticky-pulse{
-      0%,100%{box-shadow:0 4px 20px rgba(180,110,10,.5);transform:scale(1)}
-      50%    {box-shadow:0 6px 35px rgba(180,110,10,.8);transform:scale(1.03)}}
+      0%,100%{box-shadow:0 4px 20px rgba(255,140,0,.5);transform:scale(1)}
+      50%    {box-shadow:0 6px 35px rgba(255,140,0,.8);transform:scale(1.03)}}
     .sticky-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
       animation:shimmer 1.8s ease-in-out infinite;}
     @keyframes shimmer{0%{left:-100%}100%{left:200%}}
 
@@ -60,130 +64,152 @@
 
     /* ── TOP BADGE ── */
     .top-badge{
-      background:linear-gradient(90deg,#5c2d0a,#8b5a1e,#5c2d0a);
-      color:#f5d76e;font-size:clamp(12px,3.5vw,15px);font-weight:700;
+      background:linear-gradient(90deg,#2a1860,#3d2080,#2a1860);
+      color:#ffb347;font-size:clamp(12px,3.5vw,15px);font-weight:700;
       padding:10px 22px;border-radius:30px;margin-bottom:14px;
-      border:2px solid #d4a040;
-      box-shadow:0 4px 20px rgba(92,45,10,.35);
+      border:2px solid #ff8c00;
+      box-shadow:0 0 25px rgba(255,140,0,.35);
       animation:badge-pulse 2.5s ease-in-out infinite;text-align:center;}
     @keyframes badge-pulse{
-      0%,100%{box-shadow:0 4px 20px rgba(92,45,10,.35)}
-      50%    {box-shadow:0 6px 35px rgba(92,45,10,.6)}}
+      0%,100%{box-shadow:0 0 25px rgba(255,140,0,.35)}
+      50%    {box-shadow:0 0 50px rgba(255,140,0,.6)}}
 
     /* ── POSTER ── */
     .poster-wrap{width:100%;max-width:500px;border-radius:20px;overflow:hidden;
-      border:4px solid #8b5a1e;
-      box-shadow:0 8px 40px rgba(92,45,10,.2),0 2px 8px rgba(0,0,0,.1);
+      border:4px solid #ff8c00;
+      box-shadow:0 0 40px rgba(255,140,0,.3),0 0 80px rgba(255,140,0,.1);
       margin-bottom:24px;position:relative;animation:poster-glow 3s ease-in-out infinite;}
     @keyframes poster-glow{
-      0%,100%{box-shadow:0 8px 40px rgba(92,45,10,.2),0 2px 8px rgba(0,0,0,.1)}
-      50%    {box-shadow:0 12px 55px rgba(92,45,10,.35),0 2px 8px rgba(0,0,0,.1)}}
+      0%,100%{box-shadow:0 0 40px rgba(255,140,0,.3),0 0 80px rgba(255,140,0,.1)}
+      50%    {box-shadow:0 0 60px rgba(255,140,0,.5),0 0 120px rgba(255,140,0,.2)}}
     .poster-wrap img{width:100%;display:block;}
     .poster-ribbon{position:absolute;top:16px;right:-8px;
-      background:#8b5a1e;color:#f5d76e;
+      background:#ff8c00;color:#1a0e30;
       font-size:12px;font-weight:900;
       padding:6px 18px 6px 12px;border-radius:4px 0 0 4px;
-      box-shadow:0 2px 8px rgba(0,0,0,.4);
-      animation:flicker 1.5s infinite;letter-spacing:.5px;
-      border:1px solid #d4a040;}
+      box-shadow:0 2px 8px rgba(0,0,0,.5);
+      animation:flicker 1.5s infinite;letter-spacing:.5px;}
     @keyframes flicker{0%,94%,100%{opacity:1}95%{opacity:.3}97%{opacity:1}98%{opacity:.2}}
 
     /* ── HERO ── */
     .hero{text-align:center;width:100%;max-width:500px;margin-bottom:20px;}
-    .hero .pre{font-size:clamp(14px,4vw,17px);color:#8b5a1e;font-weight:700;margin-bottom:4px;}
-    .hero h1{font-size:clamp(32px,9vw,52px);font-weight:900;line-height:1.15;
-      color:#5c2d0a;
-      text-shadow:1px 1px 0 #f5d76e,0 0 20px rgba(180,110,10,.2);}
-    .hero h1 .gold{color:#b8760a;}
-    .hero .sub{font-size:clamp(16px,4.5vw,20px);color:#6a4020;font-weight:700;margin-top:8px;}
+    .hero .pre{font-size:clamp(14px,4vw,17px);color:#c8a0ff;font-weight:700;margin-bottom:4px;}
+    .hero h1{font-size:clamp(30px,8.5vw,50px);font-weight:900;line-height:1.15;
+      color:#ffb347;
+      text-shadow:2px 2px 0 #2a1860,0 0 30px rgba(255,140,0,.4);
+      -webkit-text-stroke:1px #d47600;}
+    .hero h1 .saffron{color:#ff8c00;-webkit-text-stroke:1px #d47600;}
+    .hero .sub{font-size:clamp(16px,4.5vw,20px);color:#e0d0f0;font-weight:700;margin-top:8px;}
 
-    /* ── FIVE THERAPIES CHIPS ── */
+    /* ── FREE MASTER CLASS BANNER ── */
+    .free-banner{
+      background:linear-gradient(135deg,#d47600,#ff8c00,#d47600);
+      color:#fff;font-weight:900;
+      font-size:clamp(13px,3.8vw,16px);
+      padding:14px 20px;border-radius:14px;
+      text-align:center;width:100%;max-width:500px;
+      margin-bottom:20px;letter-spacing:.3px;
+      box-shadow:0 6px 25px rgba(255,140,0,.4);
+      animation:free-pulse 1.8s ease-in-out infinite;}
+    @keyframes free-pulse{
+      0%,100%{box-shadow:0 6px 25px rgba(255,140,0,.4)}
+      50%    {box-shadow:0 8px 40px rgba(255,140,0,.7)}}
+
+    /* ── THERAPY CHIPS ── */
     .therapy-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
       width:100%;max-width:500px;margin-bottom:20px;}
     .t-chip{
-      background:linear-gradient(135deg,#5c2d0a,#7a3a10);
-      color:#f5d76e;font-size:clamp(12px,3.2vw,14px);font-weight:900;
-      padding:10px 16px;border-radius:30px;border:1px solid #d4a040;
-      box-shadow:0 2px 10px rgba(92,45,10,.2);}
+      background:rgba(255,140,0,.12);border:1px solid rgba(255,140,0,.5);
+      color:#ffb347;font-size:clamp(12px,3.2vw,14px);font-weight:900;
+      padding:8px 16px;border-radius:30px;}
+
+    /* ── DISEASE TAG CLOUD ── */
+    .disease-section{width:100%;max-width:500px;margin-bottom:20px;}
+    .disease-title{font-size:clamp(15px,4.2vw,18px);font-weight:900;color:#ffb347;
+      text-align:center;margin-bottom:12px;}
+    .disease-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+    .d-tag{
+      background:rgba(200,160,255,.1);border:1px solid rgba(200,160,255,.35);
+      color:#d0b8ff;font-size:clamp(11px,3vw,13px);font-weight:700;
+      padding:7px 14px;border-radius:20px;}
+    .disease-count{
+      background:linear-gradient(135deg,#3d2080,#5a30b0);
+      color:#ffb347;font-size:clamp(13px,3.5vw,15px);font-weight:900;
+      padding:10px 18px;border-radius:20px;
+      border:1px solid #ff8c00;margin-top:10px;text-align:center;}
 
     /* ── STAT ROW ── */
     .stat-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
       width:100%;max-width:500px;margin-bottom:18px;}
-    .stat-card{background:#fff;border:2px solid #e8d4b0;border-radius:14px;
-      padding:14px 16px;flex:1;min-width:130px;text-align:center;
-      box-shadow:0 2px 12px rgba(0,0,0,.06);}
+    .stat-card{background:rgba(255,255,255,.05);border:2px solid rgba(255,140,0,.3);
+      border-radius:14px;padding:14px 16px;flex:1;min-width:130px;text-align:center;}
     .stat-card .s-icon{font-size:28px;display:block;margin-bottom:6px;}
-    .stat-card .s-num{font-size:clamp(24px,6vw,32px);font-weight:900;color:#5c2d0a;
-      font-family:'Montserrat',sans-serif;line-height:1;}
-    .stat-card .s-label{font-size:clamp(11px,3vw,13px);color:#8b5a1e;font-weight:600;
+    .stat-card .s-num{font-size:clamp(24px,6vw,32px);font-weight:900;color:#ffb347;
+      font-family:'Montserrat',sans-serif;line-height:1;
+      text-shadow:0 0 15px rgba(255,140,0,.6);}
+    .stat-card .s-label{font-size:clamp(11px,3vw,13px);color:#c8a0ff;font-weight:600;
       line-height:1.4;margin-top:4px;}
 
-    /* ── WIDE INFO BAR ── */
-    .info-bar{background:#fff;border:2px solid #e8d4b0;border-radius:14px;
-      padding:14px 18px;width:100%;max-width:500px;text-align:center;
-      font-size:clamp(14px,3.8vw,17px);color:#5c2d0a;font-weight:700;
-      margin-bottom:18px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
-    .info-bar .hl{color:#b8760a;font-weight:900;}
-
     /* ── CARDS ── */
-    .card{background:#fff;border:1px solid #e8d4b0;border-radius:18px;
-      padding:20px 18px;width:100%;max-width:500px;margin-bottom:16px;
-      box-shadow:0 4px 20px rgba(0,0,0,.06);}
-    .card-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#5c2d0a;
+    .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,140,0,.25);
+      border-radius:18px;padding:20px 18px;
+      width:100%;max-width:500px;margin-bottom:16px;}
+    .card-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#ffb347;
       text-align:center;margin-bottom:14px;padding-bottom:10px;
-      border-bottom:2px solid #f0e0c8;}
+      border-bottom:2px solid rgba(255,140,0,.2);
+      text-shadow:0 0 12px rgba(255,140,0,.4);}
 
     /* ── LEARN ITEMS ── */
     .learn-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
-      border-bottom:1px solid #f5efe2;
-      font-size:clamp(14px,4vw,17px);color:#3a2010;font-weight:600;line-height:1.5;}
+      border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:clamp(14px,4vw,17px);color:#e0d0f0;font-weight:600;line-height:1.5;}
     .learn-item:last-child{border-bottom:none;}
-    .learn-check{color:#8b5a1e;font-size:18px;flex-shrink:0;margin-top:2px;}
+    .learn-check{color:#ff8c00;font-size:18px;flex-shrink:0;margin-top:2px;}
 
-    /* ── HIGHLIGHT ITEMS ── */
+    /* ── HIGHLIGHT CARDS ── */
     .highlights{display:flex;flex-direction:column;gap:10px;
       width:100%;max-width:500px;margin-bottom:20px;}
     .highlight-item{display:flex;align-items:center;gap:14px;
-      background:#fff;border:1px solid #e8d4b0;
-      border-left:5px solid #8b5a1e;
-      border-radius:12px;padding:14px 16px;
-      box-shadow:0 2px 10px rgba(0,0,0,.05);}
+      background:rgba(255,255,255,.05);border:1px solid rgba(200,160,255,.2);
+      border-left:5px solid #ff8c00;
+      border-radius:12px;padding:14px 16px;}
     .highlight-item .h-icon{font-size:28px;flex-shrink:0;}
-    .highlight-item .h-title{font-size:clamp(14px,3.8vw,16px);font-weight:900;color:#5c2d0a;line-height:1.3;}
-    .highlight-item .h-sub{font-size:clamp(12px,3.2vw,14px);color:#8b5a1e;font-weight:600;margin-top:2px;}
+    .highlight-item .h-title{font-size:clamp(14px,3.8vw,16px);font-weight:900;color:#ffb347;line-height:1.3;}
+    .highlight-item .h-sub{font-size:clamp(12px,3.2vw,14px);color:#c8a0ff;font-weight:600;margin-top:2px;}
 
     /* ── FEATURE GRID ── */
     .feat-grid{display:grid;grid-template-columns:1fr 1fr;
       gap:10px;width:100%;max-width:500px;margin-bottom:20px;}
-    .feat-box{background:#fff;border:1px solid #e8d4b0;border-radius:14px;
-      padding:16px 12px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+    .feat-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,140,0,.2);
+      border-radius:14px;padding:16px 12px;text-align:center;}
     .feat-box .f-icon{font-size:28px;display:block;margin-bottom:8px;}
-    .feat-box .f-text{font-size:clamp(12px,3.2vw,14px);color:#3a2010;font-weight:700;line-height:1.4;}
+    .feat-box .f-text{font-size:clamp(12px,3.2vw,14px);color:#d0c0e8;font-weight:700;line-height:1.4;}
 
     /* ── BONUS BOX ── */
-    .bonus-box{background:linear-gradient(135deg,#fff8e8,#fffdf5);
-      border:2px solid #d4a040;border-radius:18px;
+    .bonus-box{
+      background:rgba(255,140,0,.06);
+      border:2px solid rgba(255,140,0,.4);border-radius:18px;
       padding:20px 18px;width:100%;max-width:500px;margin-bottom:20px;
-      box-shadow:0 4px 20px rgba(212,160,23,.12);}
-    .bonus-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#7a4000;
+      box-shadow:0 4px 20px rgba(255,140,0,.1);}
+    .bonus-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#ffb347;
       text-align:center;margin-bottom:14px;padding-bottom:10px;
-      border-bottom:2px solid #f0d880;}
+      border-bottom:2px solid rgba(255,140,0,.25);}
     .bonus-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
-      border-bottom:1px solid #f5edcc;
-      font-size:clamp(13px,3.8vw,16px);color:#5a3000;font-weight:700;line-height:1.5;}
+      border-bottom:1px solid rgba(255,140,0,.1);
+      font-size:clamp(13px,3.8vw,16px);color:#e0d0f0;font-weight:700;line-height:1.5;}
     .bonus-item:last-child{border-bottom:none;}
 
     /* ── DIVIDER ── */
     .divider{display:flex;align-items:center;gap:10px;
       width:100%;max-width:500px;margin-bottom:16px;}
-    .divider-line{flex:1;height:2px;background:linear-gradient(90deg,transparent,#8b5a1e,transparent);}
-    .divider-text{font-size:clamp(13px,3.8vw,16px);font-weight:900;color:#5c2d0a;
+    .divider-line{flex:1;height:2px;background:linear-gradient(90deg,transparent,#ff8c00,transparent);}
+    .divider-text{font-size:clamp(13px,3.8vw,16px);font-weight:900;color:#ffb347;
       white-space:nowrap;padding:0 6px;}
 
     /* ── ARROWS ── */
     .arrow-section{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;}
     .arrow-row{display:flex;gap:8px;margin-bottom:2px;}
-    .arrow{color:#b8760a;font-size:34px;animation:bounce-d .6s ease-in-out infinite alternate;}
+    .arrow{color:#ff8c00;font-size:34px;animation:bounce-d .6s ease-in-out infinite alternate;}
     .arrow:nth-child(2){animation-delay:.1s}
     .arrow:nth-child(3){animation-delay:.2s}
     @keyframes bounce-d{from{transform:translateY(-6px);opacity:.5}to{transform:translateY(6px);opacity:1}}
@@ -191,35 +217,35 @@
     /* ── JOIN BUTTON ── */
     .join-wrap{position:relative;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
     .join-wrap::before,.join-wrap::after{content:'';position:absolute;inset:-5px;border-radius:18px;
-      background:linear-gradient(45deg,#8b5a1e,#d4a040,#8b5a1e,#b8760a);
+      background:linear-gradient(45deg,#ff8c00,#ffb347,#ff8c00,#d47600);
       background-size:300% 300%;animation:spin-border 2s linear infinite;z-index:-1;}
-    .join-wrap::after{filter:blur(12px);opacity:.6;}
+    .join-wrap::after{filter:blur(14px);opacity:.6;}
     @keyframes spin-border{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-    .side-arr{color:#b8760a;font-size:28px;}
+    .side-arr{color:#ff8c00;font-size:28px;}
     .side-arr.l{animation:arr-l .7s ease-in-out infinite alternate;}
     .side-arr.r{animation:arr-r .7s ease-in-out infinite alternate;}
     @keyframes arr-l{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
     @keyframes arr-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
 
     .join-btn{display:flex;align-items:center;justify-content:center;gap:10px;
-      background:linear-gradient(135deg,#8b5a1e 0%,#b8760a 50%,#8b5a1e 100%);
+      background:linear-gradient(135deg,#d47600 0%,#ff8c00 50%,#d47600 100%);
       color:#fff;font-family:'Montserrat','Noto Sans Devanagari',sans-serif;
       font-size:clamp(18px,5vw,24px);font-weight:900;text-decoration:none;
       padding:18px 32px;border-radius:14px;text-transform:uppercase;letter-spacing:.5px;
-      box-shadow:0 8px 30px rgba(139,90,30,.5);
+      box-shadow:0 8px 30px rgba(255,140,0,.5);
       animation:btn-pulse 1.1s ease-in-out infinite;
       overflow:hidden;position:relative;min-width:240px;text-align:center;
       -webkit-tap-highlight-color:transparent;}
     @keyframes btn-pulse{
-      0%,100%{transform:scale(1);box-shadow:0 8px 30px rgba(139,90,30,.5)}
-      50%    {transform:scale(1.05);box-shadow:0 12px 50px rgba(139,90,30,.8)}}
+      0%,100%{transform:scale(1);box-shadow:0 8px 30px rgba(255,140,0,.5)}
+      50%    {transform:scale(1.05);box-shadow:0 12px 50px rgba(255,140,0,.8)}}
     .join-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
       background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
       animation:shimmer 2s ease-in-out infinite;}
     .join-btn:active{transform:scale(.96);}
 
     /* ── URGENCY ── */
-    .urgency{background:linear-gradient(90deg,#8b5a1e,#b8760a,#8b5a1e);
+    .urgency{background:linear-gradient(90deg,#d47600,#ff8c00,#d47600);
       background-size:200% 100%;animation:urg 2s linear infinite;
       color:#fff;font-weight:900;font-size:clamp(13px,3.8vw,16px);
       padding:14px 20px;border-radius:12px;text-align:center;
@@ -229,13 +255,13 @@
     /* ── TRUST ── */
     .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
       width:100%;max-width:500px;margin-bottom:20px;}
-    .trust-box{background:#fff;border:1px solid #e8d4b0;border-radius:12px;
-      padding:14px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .trust-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,140,0,.2);
+      border-radius:12px;padding:14px 12px;text-align:center;}
     .trust-box .t-icon{font-size:26px;display:block;margin-bottom:6px;}
-    .trust-box .t-text{font-size:clamp(11px,3vw,13px);color:#5c2d0a;font-weight:700;line-height:1.4;}
+    .trust-box .t-text{font-size:clamp(11px,3vw,13px);color:#c8a0ff;font-weight:700;line-height:1.4;}
 
     /* ── FOOTER ── */
-    .footer{color:#a09080;font-size:12px;text-align:center;max-width:420px;line-height:1.6;}
+    .footer{color:#5a4880;font-size:12px;text-align:center;max-width:420px;line-height:1.6;}
   </style>
 </head>
 <body>
@@ -251,58 +277,64 @@
 const CONFIG = {
 
   /* ── Browser tab title ── */
-  pageTitle: "पंचकर्म प्रशिक्षण — निःशुल्क वेबिनार",
+  pageTitle: "पंचकर्म एडवांस प्रशिक्षण — फ्री मास्टर क्लास",
 
   /* ── WhatsApp community link ── */
   whatsappLink: "https://chat.whatsapp.com/LtxK6MBD7QEBHk28Sqj9G6",
 
   /* ── Top badge ── */
-  topBadge: "🙏 आयुर्वेद की सबसे शक्तिशाली चिकित्सा पद्धति 🙏",
+  topBadge: "🔥 सीखें पंचकर्म एडवांस — अपना कैरियर बनाएं 🔥",
 
   /* ── Poster image ── */
   posterImage: "panchkarma-poster.jpg",
-  posterRibbon: "🔴 FREE WEBINAR",
+  posterRibbon: "🟠 FREE MASTER CLASS",
 
   /* ── Hero headline ── */
-  heroPre: "सम्पूर्ण",
+  heroPre: "सीखें",
   heroMain: "पंचकर्म",
-  heroGold: "प्रशिक्षण",
-  heroSub: "शरीर शुद्धि की पारंपरिक विधा सीखें!",
+  heroSaffron: "एडवांस",
+  heroSub: "अपना कैरियर बनाएं!",
 
-  /* ── Five therapies of Panchkarma ── */
+  /* ── Free Master Class banner ── */
+  freeText: "👇 नीचे दिये लिंक पर क्लिक कर कम्युनिटी से जुड़ें और फ्री मास्टर क्लास ज्वाइन करें!",
+
+  /* ── Therapies you'll learn (chip list) ── */
   therapyChips: [
-    "वमन", "विरेचन", "बस्ति", "नस्य", "रक्तमोक्षण"
+    "अभ्यंग मसाज", "शिरोधारा", "स्वेदन", "वमन",
+    "विरेचन", "विभिन्न बस्ति", "नस्य", "केरलीय थेरेपी"
   ],
 
-  /* ── Stats row ── */
-  stats: [
-    { icon: "📅", num: "5", label: "दिनों का\nगहन प्रशिक्षण" },
-    { icon: "🧑‍⚕️", num: "5000+", label: "प्रशिक्षित\nचिकित्सक" },
+  /* ── Diseases section ── */
+  diseaseTitle: "💊 50+ रोगों में पंचकर्म चिकित्सा सीखें",
+  diseaseTags: [
+    "पक्षघात", "सायटिका", "गठिया", "इन्फर्टिलिटी",
+    "माइग्रेन", "कमर दर्द", "स्लिप डिस्क",
   ],
-  infoBar: "👨‍⚕️ अनुभवी पंचकर्म विशेषज्ञों से <span class='hl'>लाइव मार्गदर्शन</span>",
+  diseaseCount: "और 50 से अधिक रोगों में पंचकर्म चिकित्सा!",
 
   /* ── Key highlights ── */
   highlights: [
-    { icon: "🌿", title: "पांचों कर्मों की संपूर्ण क्रिया विधि", sub: "वमन, विरेचन, बस्ति, नस्य, रक्तमोक्षण" },
-    { icon: "📋", title: "पूर्वकर्म और पश्चात्कर्म की विस्तृत जानकारी", sub: "स्नेहन, स्वेदन, संसर्जन क्रम" },
-    { icon: "🏥", title: "क्लिनिक में पंचकर्म कैसे शुरू करें", sub: "सेटअप, उपकरण, रोगी प्रबंधन" },
-    { icon: "💰", title: "पंचकर्म से कमाई के अवसर", sub: "Wellness center और clinic business model" },
+    { icon: "📅", title: "5 दिनों का ऑनलाइन प्रशिक्षण", sub: "लाइव, इंटरेक्टिव, प्रैक्टिकल सेशन" },
+    { icon: "🧴", title: "अभ्यंग मसाज और शिरोधारा की विधियां", sub: "Step-by-step practical training" },
+    { icon: "🌿", title: "केरलीय थेरेपी की विधियां सीखें", sub: "परम्परागत केरल पंचकर्म तकनीक" },
+    { icon: "🏥", title: "अपना पंचकर्म क्लिनिक शुरू करें", sub: "सेटअप, उपकरण, बिजनेस मॉडल" },
   ],
 
   /* ── What you'll learn ── */
-  learnTitle: "📜 इस वेबिनार में क्या सीखेंगे?",
+  learnTitle: "📜 क्या सीखेंगे आप?",
   learnItems: [
-    "पंचकर्म के मूल सिद्धांत और संहिता संदर्भ",
-    "प्रत्येक कर्म के लिए रोगी का चयन (Indication & Contraindication)",
-    "पूर्वकर्म — स्नेहन और स्वेदन की सही विधि",
-    "प्रधानकर्म — पांचों कर्मों की Step-by-Step प्रक्रिया",
-    "पश्चात्कर्म — संसर्जन क्रम और रोगी देखभाल",
-    "क्लिनिक सेटअप और बिजनेस मॉडल",
+    "अभ्यंग मसाज — सम्पूर्ण विधि और तैल चयन",
+    "शिरोधारा — तकनीक, समय और औषधि",
+    "स्वेदन — विभिन्न प्रकार की स्वेदन विधियां",
+    "वमन और विरेचन — क्रिया विधि और सावधानियां",
+    "विभिन्न प्रकार की बस्ति — मात्रा, अनुवासन, निरूह",
+    "नस्य कर्म — प्रकार, विधि और लाभ",
+    "केरलीय थेरेपी — पिझिचिल, नवरकिझी, एलक्किझी",
   ],
 
   /* ── Features grid ── */
   features: [
-    { icon: "🎙️", text: "विशेषज्ञों द्वारा लाइव सेशन" },
+    { icon: "🎙️", text: "विशेषज्ञों द्वारा लाइव मार्गदर्शन" },
     { icon: "📄", text: "नोट्स, PDF और लाइव रिकॉर्डिंग" },
     { icon: "🏅", text: "Certificate of Completion" },
     { icon: "♾️", text: "Lifetime Community Access" },
@@ -311,30 +343,30 @@ const CONFIG = {
   /* ── Bonus ── */
   bonusTitle: "🎁 विशेष बोनस",
   bonusItems: [
-    { icon: "📋", text: "पंचकर्म SOP (Standard Operating Procedure) PDF" },
-    { icon: "🎥", text: "Practical Demo Videos — Step-by-step" },
-    { icon: "💊", text: "औषधि योग और तैल निर्माण विधि" },
-    { icon: "🤝", text: "Hands-On Workshop में विशेष छूट" },
+    { icon: "🎥", text: "Practical Demo Videos — Step-by-step Procedures" },
+    { icon: "📋", text: "पंचकर्म SOP और Clinical Notes PDF" },
+    { icon: "💊", text: "औषधि योग, तैल निर्माण और आहार विधि" },
+    { icon: "🤝", text: "Hands-On Training में भारी छूट — Details मास्टर क्लास में!" },
   ],
 
   /* ── Buttons ── */
   btnText: "📲 अभी जुड़ें — FREE!",
-  btnHint: "👆 बटन दबाएं और निःशुल्क वेबिनार से जुड़ें",
+  btnHint: "👆 बटन दबाएं और फ्री मास्टर क्लास ज्वाइन करें",
 
   /* ── Urgency ── */
-  urgencyText: "⏰ सीमित सीटें — आज ही जुड़ें, अगला बैच जल्द! ⏰",
+  urgencyText: "⏰ सीमित सीटें — आज ही जुड़ें, देर न करें! ⏰",
 
   /* ── Trust badges ── */
   trustBadges: [
-    { icon: "🛡️", text: "100% प्रामाणिक शास्त्रीय ज्ञान" },
+    { icon: "🛡️", text: "100% प्रैक्टिकल और क्लिनिकल ज्ञान" },
     { icon: "👨‍⚕️", text: "अनुभवी पंचकर्म विशेषज्ञों की टीम" },
-    { icon: "📜", text: "चरक संहिता आधारित प्रशिक्षण" },
-    { icon: "⭐", text: "5000+ चिकित्सकों का भरोसा" },
+    { icon: "📜", text: "शास्त्रीय और आधुनिक दृष्टिकोण" },
+    { icon: "⭐", text: "हजारों चिकित्सकों का भरोसा" },
   ],
 
   /* ── Footer ── */
   footerLine1: "WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।",
-  footerLine2: "यह वेबिनार पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।",
+  footerLine2: "यह मास्टर क्लास पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।",
 };
 /* ═══════════════════════════════════════════════════════════════════════════
    ⛔  DO NOT EDIT BELOW THIS LINE — नीचे कुछ न बदलें
@@ -342,6 +374,18 @@ const CONFIG = {
 </script>
 
 <script>
+  /* Floating icons */
+  var floaters=[
+    {l:'5%',d:'11s',delay:'0s',e:'🌿'},{l:'18%',d:'14s',delay:'2s',e:'🧘'},
+    {l:'33%',d:'9s',delay:'1s',e:'🪷'},{l:'50%',d:'13s',delay:'3.5s',e:'🌿'},
+    {l:'68%',d:'10s',delay:'0.7s',e:'💆'},{l:'82%',d:'8s',delay:'2s',e:'🪷'},
+    {l:'94%',d:'15s',delay:'4s',e:'🧘'},
+  ];
+  floaters.forEach(function(f){
+    var el=document.createElement('div');el.className='floater';
+    el.style.cssText='left:'+f.l+';animation-duration:'+f.d+';animation-delay:'+f.delay+';';
+    el.textContent=f.e;document.body.appendChild(el);});
+
   function link(text,extraStyle){
     return '<a class="join-btn" href="'+CONFIG.whatsappLink+'" target="_blank" rel="noopener noreferrer"'
       +(extraStyle?' style="'+extraStyle+'"':'')+'>'+text+'</a>';}
@@ -357,11 +401,7 @@ const CONFIG = {
     return h+'</div>';}
 
   var chipsHTML=CONFIG.therapyChips.map(function(c){return '<span class="t-chip">'+c+'</span>';}).join('');
-
-  var statsHTML=CONFIG.stats.map(function(s){
-    return '<div class="stat-card"><span class="s-icon">'+s.icon+'</span>'
-      +'<div class="s-num">'+s.num+'</div>'
-      +'<div class="s-label">'+s.label.replace('\n','<br>')+'</div></div>';}).join('');
+  var dTagsHTML=CONFIG.diseaseTags.map(function(d){return '<span class="d-tag">'+d+'</span>';}).join('');
 
   var hlHTML=CONFIG.highlights.map(function(h){
     return '<div class="highlight-item"><span class="h-icon">'+h.icon+'</span>'
@@ -398,21 +438,28 @@ const CONFIG = {
 
     +'<div class="hero">'
     +'<div class="pre">'+CONFIG.heroPre+'</div>'
-    +'<h1><span class="gold">'+CONFIG.heroMain+'</span><br>'+CONFIG.heroGold+'</h1>'
+    +'<h1><span class="saffron">'+CONFIG.heroMain+'</span><br>'+CONFIG.heroSaffron+'</h1>'
     +'<div class="sub">'+CONFIG.heroSub+'</div></div>'
 
+    +'<div class="free-banner">'+CONFIG.freeText+'</div>'
+
+    +'<div class="divider"><div class="divider-line"></div>'
+    +'<div class="divider-text">🧘 क्या सीखेंगे</div>'
+    +'<div class="divider-line"></div></div>'
     +'<div class="therapy-chips">'+chipsHTML+'</div>'
 
-    +'<div class="stat-row">'+statsHTML+'</div>'
-    +'<div class="info-bar">'+CONFIG.infoBar+'</div>'
+    +'<div class="disease-section">'
+    +'<div class="disease-title">'+CONFIG.diseaseTitle+'</div>'
+    +'<div class="disease-tags">'+dTagsHTML+'</div>'
+    +'<div class="disease-count">'+CONFIG.diseaseCount+'</div></div>'
 
     +'<div class="highlights">'+hlHTML+'</div>'
 
-    +'<div class="card"><div class="card-title">'+CONFIG.learnTitle+'</div>'+learnHTML+'</div>'
-
     +arrowsDown(true)
     +joinWrap(CONFIG.btnText)
-    +'<p style="color:#999;font-size:13px;text-align:center;margin-bottom:24px;">'+CONFIG.btnHint+'</p>'
+    +'<p style="color:#7a6090;font-size:13px;text-align:center;margin-bottom:24px;">'+CONFIG.btnHint+'</p>'
+
+    +'<div class="card"><div class="card-title">'+CONFIG.learnTitle+'</div>'+learnHTML+'</div>'
 
     +'<div class="divider"><div class="divider-line"></div>'
     +'<div class="divider-text">✨ आपको मिलेगा</div>'
