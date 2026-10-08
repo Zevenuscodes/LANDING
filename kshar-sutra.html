@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Loading…</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Montserrat:wght@700;900&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      background:#f6f8ff;
+      font-family:'Noto Sans Devanagari','Montserrat',sans-serif;
+      overflow-x:hidden;padding-bottom:100px;color:#0d2a6b;
+    }
+
+    /* ── BG ── */
+    .bg-decor{position:fixed;inset:0;z-index:-1;
+      background:linear-gradient(170deg,#ffffff 0%,#f2f5ff 50%,#fffbe0 100%);}
+    .bg-decor::before{content:'';position:fixed;inset:0;
+      background:radial-gradient(ellipse at 50% 20%,rgba(255,229,0,.18) 0%,transparent 60%);
+      animation:bg-glow 5s ease-in-out infinite alternate;}
+    @keyframes bg-glow{from{opacity:.4}to{opacity:1}}
+
+    /* ── FLOATING ICONS ── */
+    .floater{position:fixed;font-size:20px;opacity:0;
+      animation:float-down linear infinite;pointer-events:none;z-index:0;}
+    @keyframes float-down{
+      0%{transform:translateY(-40px) rotate(0deg);opacity:0}
+      10%{opacity:.35}90%{opacity:.2}
+      100%{transform:translateY(105vh) rotate(360deg);opacity:0}}
+
+    /* ── STICKY BAR ── */
+    .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;
+      background:#0d2a6b;border-top:3px solid #ffe500;
+      padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:10px;
+      box-shadow:0 -6px 30px rgba(13,42,107,.35);animation:sticky-appear .4s ease-out;}
+    @keyframes sticky-appear{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .sticky-arrow{color:#ffe500;font-size:24px;animation:arr-blink .6s ease-in-out infinite alternate;}
+    @keyframes arr-blink{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
+    .sticky-arrow.r{animation-name:arr-blink-r;}
+    @keyframes arr-blink-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
+    .sticky-btn{flex:1;max-width:380px;display:flex;align-items:center;justify-content:center;gap:8px;
+      background:linear-gradient(135deg,#ffd400 0%,#ffe500 50%,#ffd400 100%);
+      color:#0d2a6b;font-family:'Montserrat','Noto Sans Devanagari',sans-serif;
+      font-size:clamp(16px,4.5vw,21px);font-weight:900;
+      text-decoration:none;padding:14px 20px;border-radius:40px;
+      text-transform:uppercase;letter-spacing:.5px;
+      box-shadow:0 4px 20px rgba(255,229,0,.5);
+      animation:sticky-pulse 1s ease-in-out infinite;
+      overflow:hidden;position:relative;-webkit-tap-highlight-color:transparent;}
+    @keyframes sticky-pulse{
+      0%,100%{box-shadow:0 4px 20px rgba(255,229,0,.4);transform:scale(1)}
+      50%    {box-shadow:0 6px 35px rgba(255,229,0,.75);transform:scale(1.03)}}
+    .sticky-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
+      animation:shimmer 1.8s ease-in-out infinite;}
+    @keyframes shimmer{0%{left:-100%}100%{left:200%}}
+
+    /* ── PAGE ── */
+    .page{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+      padding:16px 14px 50px;}
+
+    /* ── TOP BADGE ── */
+    .top-badge{
+      background:#e3262b;color:#fff;font-size:clamp(12px,3.5vw,15px);font-weight:900;
+      padding:10px 22px;border-radius:30px;margin-bottom:14px;
+      box-shadow:0 4px 20px rgba(227,38,43,.35);
+      animation:badge-pulse 2.5s ease-in-out infinite;text-align:center;}
+    @keyframes badge-pulse{
+      0%,100%{box-shadow:0 4px 20px rgba(227,38,43,.3)}
+      50%    {box-shadow:0 6px 36px rgba(227,38,43,.6)}}
+
+    /* ── POSTER ── */
+    .poster-wrap{width:100%;max-width:500px;border-radius:20px;overflow:hidden;
+      border:4px solid #0d2a6b;background:#fff;
+      box-shadow:0 10px 40px rgba(13,42,107,.2);
+      margin-bottom:24px;position:relative;animation:poster-glow 3s ease-in-out infinite;}
+    @keyframes poster-glow{
+      0%,100%{box-shadow:0 10px 40px rgba(13,42,107,.18)}
+      50%    {box-shadow:0 10px 60px rgba(255,212,0,.55)}}
+    .poster-wrap img{width:100%;display:block;}
+    .poster-ribbon{position:absolute;top:16px;right:-8px;
+      background:#e3262b;color:#fff;
+      font-size:12px;font-weight:900;
+      padding:6px 18px 6px 12px;border-radius:4px 0 0 4px;
+      box-shadow:0 2px 8px rgba(0,0,0,.3);
+      animation:flicker 1.5s infinite;letter-spacing:.5px;}
+    @keyframes flicker{0%,94%,100%{opacity:1}95%{opacity:.3}97%{opacity:1}98%{opacity:.2}}
+
+    /* ── HERO ── */
+    .hero{text-align:center;width:100%;max-width:500px;margin-bottom:20px;}
+    .hero .pre{font-family:'Montserrat','Noto Sans Devanagari',sans-serif;
+      font-size:clamp(17px,5vw,24px);color:#0d2a6b;font-weight:900;margin-bottom:8px;}
+    .hero .pre .dot{color:#e3262b;}
+    .hero .tag{display:inline-block;background:#e3262b;color:#fff;
+      font-size:clamp(18px,5vw,26px);font-weight:900;padding:6px 18px;border-radius:12px;margin-bottom:8px;}
+    .hero h1{font-size:clamp(40px,12vw,64px);font-weight:900;line-height:1.2;color:#0d2a6b;}
+    .hero h1 .brush{display:inline-block;background:#ffe500;padding:0 18px;
+      transform:rotate(-1.5deg);border-radius:6px;
+      box-shadow:6px 6px 0 rgba(13,42,107,.12);}
+    .hero .sub{font-size:clamp(20px,6vw,30px);color:#111;font-weight:900;margin-top:10px;}
+
+    /* ── FREE BANNER ── */
+    .free-banner{
+      background:#0d2a6b;color:#fff;font-weight:900;
+      font-size:clamp(13px,3.8vw,16px);
+      padding:14px 20px;border-radius:14px;border-bottom:4px solid #ffe500;
+      text-align:center;width:100%;max-width:500px;
+      margin-bottom:20px;letter-spacing:.3px;
+      box-shadow:0 6px 25px rgba(13,42,107,.25);}
+
+    /* ── CONDITION CARDS ── */
+    .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .cond-box{background:#fff;border:2px solid #0d2a6b;border-radius:14px;
+      padding:12px 6px;text-align:center;box-shadow:0 4px 0 #0d2a6b;}
+    .cond-box .c-en{font-family:'Montserrat',sans-serif;font-size:clamp(13px,3.6vw,16px);
+      font-weight:900;color:#0d2a6b;}
+    .cond-box .c-hi{font-size:clamp(12px,3.2vw,14px);font-weight:700;color:#e3262b;margin-top:2px;}
+
+    /* ── CHIPS ── */
+    .therapy-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .t-chip{background:#fffbd1;border:1px solid #e6c800;
+      color:#0d2a6b;font-size:clamp(12px,3.2vw,14px);font-weight:900;
+      padding:8px 16px;border-radius:30px;}
+
+    /* ── HIGHLIGHT CARDS ── */
+    .highlights{display:flex;flex-direction:column;gap:10px;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .highlight-item{display:flex;align-items:center;gap:14px;
+      background:#fff;border:1px solid rgba(13,42,107,.12);
+      border-left:5px solid #e3262b;
+      border-radius:12px;padding:14px 16px;box-shadow:0 2px 10px rgba(13,42,107,.06);}
+    .highlight-item .h-icon{font-size:28px;flex-shrink:0;}
+    .highlight-item .h-title{font-size:clamp(14px,3.8vw,16px);font-weight:900;color:#0d2a6b;line-height:1.3;}
+    .highlight-item .h-sub{font-size:clamp(12px,3.2vw,14px);color:#4a5a85;font-weight:600;margin-top:2px;}
+
+    /* ── CARDS ── */
+    .card{background:#fff;border:1px solid rgba(13,42,107,.12);
+      border-radius:18px;padding:20px 18px;box-shadow:0 4px 18px rgba(13,42,107,.08);
+      width:100%;max-width:500px;margin-bottom:16px;}
+    .card-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#0d2a6b;
+      text-align:center;margin-bottom:14px;padding-bottom:10px;
+      border-bottom:3px solid #ffe500;}
+    .learn-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
+      border-bottom:1px solid rgba(13,42,107,.08);
+      font-size:clamp(14px,4vw,17px);color:#1c2a4d;font-weight:600;line-height:1.5;}
+    .learn-item:last-child{border-bottom:none;}
+    .learn-check{font-size:18px;flex-shrink:0;margin-top:2px;}
+
+    /* ── FEATURE GRID ── */
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;
+      gap:10px;width:100%;max-width:500px;margin-bottom:20px;}
+    .feat-box{background:#fff;border:1px solid rgba(13,42,107,.12);
+      border-radius:14px;padding:16px 12px;text-align:center;box-shadow:0 2px 10px rgba(13,42,107,.06);}
+    .feat-box .f-icon{font-size:28px;display:block;margin-bottom:8px;}
+    .feat-box .f-text{font-size:clamp(12px,3.2vw,14px);color:#1c2a4d;font-weight:700;line-height:1.4;}
+
+    /* ── BONUS BOX ── */
+    .bonus-box{background:#fffbd1;border:2px dashed #e3262b;border-radius:18px;
+      padding:20px 18px;width:100%;max-width:500px;margin-bottom:20px;}
+    .bonus-title{font-size:clamp(16px,4.5vw,20px);font-weight:900;color:#e3262b;
+      text-align:center;margin-bottom:14px;padding-bottom:10px;
+      border-bottom:2px solid rgba(227,38,43,.2);}
+    .bonus-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;
+      border-bottom:1px solid rgba(227,38,43,.1);
+      font-size:clamp(13px,3.8vw,16px);color:#1c2a4d;font-weight:700;line-height:1.5;}
+    .bonus-item:last-child{border-bottom:none;}
+
+    /* ── DIVIDER ── */
+    .divider{display:flex;align-items:center;gap:10px;
+      width:100%;max-width:500px;margin-bottom:16px;}
+    .divider-line{flex:1;height:2px;background:#e3262b;}
+    .divider-text{font-size:clamp(13px,3.8vw,16px);font-weight:900;color:#0d2a6b;
+      white-space:nowrap;padding:0 6px;}
+
+    /* ── ARROWS ── */
+    .arrow-section{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;}
+    .arrow-row{display:flex;gap:8px;margin-bottom:2px;}
+    .arrow{color:#e3262b;font-size:34px;animation:bounce-d .6s ease-in-out infinite alternate;}
+    .arrow:nth-child(2){animation-delay:.1s}
+    .arrow:nth-child(3){animation-delay:.2s}
+    @keyframes bounce-d{from{transform:translateY(-6px);opacity:.5}to{transform:translateY(6px);opacity:1}}
+
+    /* ── JOIN BUTTON ── */
+    .join-wrap{position:relative;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .side-arr{color:#e3262b;font-size:28px;}
+    .side-arr.l{animation:arr-l .7s ease-in-out infinite alternate;}
+    .side-arr.r{animation:arr-r .7s ease-in-out infinite alternate;}
+    @keyframes arr-l{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(-5px)}}
+    @keyframes arr-r{from{opacity:.3;transform:translateX(0)}to{opacity:1;transform:translateX(5px)}}
+
+    .join-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#ffd400 0%,#ffe500 50%,#ffd400 100%);
+      color:#0d2a6b;font-family:'Montserrat','Noto Sans Devanagari',sans-serif;
+      font-size:clamp(20px,5.5vw,26px);font-weight:900;text-decoration:none;
+      padding:16px 34px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;
+      border:3px solid #0d2a6b;
+      box-shadow:0 6px 0 #0d2a6b,0 10px 30px rgba(255,212,0,.5);
+      animation:btn-pulse 1.1s ease-in-out infinite;
+      overflow:hidden;position:relative;min-width:240px;text-align:center;line-height:1.15;
+      -webkit-tap-highlight-color:transparent;}
+    .join-btn small{font-family:'Noto Sans Devanagari',sans-serif;font-size:.62em;
+      text-transform:none;letter-spacing:0;margin-top:4px;}
+    @keyframes btn-pulse{
+      0%,100%{transform:scale(1)}
+      50%    {transform:scale(1.05)}}
+    .join-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
+      animation:shimmer 2s ease-in-out infinite;}
+    .join-btn:active{transform:scale(.96);}
+
+    /* ── URGENCY ── */
+    .urgency{background:linear-gradient(90deg,#c41e23,#e3262b,#c41e23);
+      background-size:200% 100%;animation:urg 2s linear infinite;
+      color:#fff;font-weight:900;font-size:clamp(13px,3.8vw,16px);
+      padding:14px 20px;border-radius:12px;text-align:center;
+      width:100%;max-width:500px;margin-bottom:20px;letter-spacing:.5px;}
+    @keyframes urg{0%{background-position:0%}100%{background-position:200%}}
+
+    /* ── TRUST ── */
+    .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
+      width:100%;max-width:500px;margin-bottom:20px;}
+    .trust-box{background:#fff;border:1px solid rgba(13,42,107,.12);
+      border-radius:12px;padding:14px 12px;text-align:center;}
+    .trust-box .t-icon{font-size:26px;display:block;margin-bottom:6px;}
+    .trust-box .t-text{font-size:clamp(11px,3vw,13px);color:#4a5a85;font-weight:700;line-height:1.4;}
+
+    /* ── FOOTER ── */
+    .footer{color:#8090b0;font-size:12px;text-align:center;max-width:420px;line-height:1.6;}
+  </style>
+</head>
+<body>
+<div class="bg-decor"></div>
+<div class="page" id="page-root"></div>
+<div class="sticky-bar" id="sticky-bar"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  TEMPLATE CONFIG — EDIT ONLY THIS SECTION
+   📝  सिर्फ यहाँ बदलाव करें — बाकी कुछ न छुएं
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  /* ── Browser tab title ── */
+  pageTitle: "क्षार सूत्र चिकित्सा प्रशिक्षण — Piles, Fissure, Fistula",
+
+  /* ── WhatsApp community link ── */
+  whatsappLink: "https://chat.whatsapp.com/IW6YXLv7FIa9I0HF25QEuZ",
+
+  /* ── Top badge ── */
+  topBadge: "🔥 Piles • Fissure • Fistula की सफल आयुर्वेदिक चिकित्सा 🔥",
+
+  /* ── Poster image ── */
+  posterImage: "kshar-sutra-poster.jpg",
+  posterRibbon: "🔴 FREE MASTER CLASS",
+
+  /* ── Hero headline ── */
+  heroConditions: ["Piles", "Fissure", "Fistula"],
+  heroTag: "सफल Ayurvedic चिकित्सा",
+  heroMain: "क्षार सूत्र",
+  heroSub: "सीखें!",
+
+  /* ── Free banner ── */
+  freeText: "👇 नीचे दिये बटन पर क्लिक कर कम्युनिटी से जुड़ें और फ्री मास्टर क्लास ज्वाइन करें!",
+
+  /* ── Conditions (3 cards) ── */
+  conditions: [
+    { en: "Piles",   hi: "अर्श / बवासीर" },
+    { en: "Fissure", hi: "परिकर्तिका" },
+    { en: "Fistula", hi: "भगंदर" },
+  ],
+
+  /* ── Procedures you'll learn (chip list) ── */
+  therapyChips: [
+    "क्षार सूत्र निर्माण", "क्षार कर्म", "अग्नि कर्म", "सूत्र बंधन",
+    "प्रोक्टोस्कोपी", "Sitz Bath", "पिलोनिडल साइनस", "जलौका"
+  ],
+
+  /* ── Key highlights ── */
+  highlights: [
+    { icon: "🧵", title: "क्षार सूत्र बनाने की शास्त्रीय विधि", sub: "अपामार्ग क्षार, स्नुही क्षीर, हरिद्रा — Step-by-step" },
+    { icon: "🩺", title: "रोगी परीक्षण और सही निदान", sub: "Per-rectal examination, Proctoscopy, Fistula tracking" },
+    { icon: "✂️", title: "Kshar Sutra Ligation और सूत्र परिवर्तन", sub: "Practical procedure, सावधानियां और Follow-up" },
+    { icon: "🏥", title: "अपना Ano-Rectal क्लिनिक शुरू करें", sub: "सेटअप, उपकरण, बिजनेस मॉडल" },
+  ],
+
+  /* ── What you'll learn ── */
+  learnTitle: "📜 क्या सीखेंगे आप?",
+  learnItems: [
+    "अर्श (Piles) — प्रकार, निदान और क्षार सूत्र बंधन",
+    "परिकर्तिका (Fissure) — क्षार कर्म, अग्नि कर्म और औषधि",
+    "भगंदर (Fistula-in-Ano) — Tract identification और क्षार सूत्र",
+    "क्षार सूत्र निर्माण — Coating, Drying और Sterilization",
+    "Pre-operative और Post-operative देखभाल",
+    "पथ्य-अपथ्य, आहार और Recurrence रोकने के उपाय",
+    "Complications को पहचानना और Manage करना",
+  ],
+
+  /* ── Features grid ── */
+  features: [
+    { icon: "🎙️", text: "विशेषज्ञ शल्य चिकित्सकों द्वारा लाइव मार्गदर्शन" },
+    { icon: "📄", text: "नोट्स, PDF और लाइव रिकॉर्डिंग" },
+    { icon: "🏅", text: "Certificate of Completion" },
+    { icon: "♾️", text: "Lifetime Community Access" },
+  ],
+
+  /* ── Bonus ── */
+  bonusTitle: "🎁 विशेष बोनस",
+  bonusItems: [
+    { icon: "🎥", text: "Live Procedure Demo Videos — Piles, Fissure, Fistula" },
+    { icon: "📋", text: "क्षार सूत्र SOP और Clinical Case Sheets PDF" },
+    { icon: "💊", text: "Ano-Rectal रोगों के लिए प्रमाणित औषधि योग" },
+    { icon: "🤝", text: "Hands-On Training में भारी छूट — Details मास्टर क्लास में!" },
+  ],
+
+  /* ── Buttons ── */
+  btnText: "APPLY NOW",
+  btnSubText: "— पर क्लिक करें —",
+  btnHint: "👆 बटन दबाएं और फ्री मास्टर क्लास ज्वाइन करें",
+
+  /* ── Urgency ── */
+  urgencyText: "⏰ सीमित सीटें — आज ही Apply करें, देर न करें! ⏰",
+
+  /* ── Trust badges ── */
+  trustBadges: [
+    { icon: "🛡️", text: "100% प्रैक्टिकल और क्लिनिकल ज्ञान" },
+    { icon: "👨‍⚕️", text: "अनुभवी क्षार सूत्र विशेषज्ञों की टीम" },
+    { icon: "📜", text: "सुश्रुत संहिता आधारित शास्त्रीय विधि" },
+    { icon: "⭐", text: "हजारों चिकित्सकों का भरोसा" },
+  ],
+
+  /* ── Footer ── */
+  footerLine1: "WhatsApp Community से जुड़ने पर आप WhatsApp की शर्तों से सहमत होते हैं।",
+  footerLine2: "यह मास्टर क्लास पूरी तरह निःशुल्क है। आप कभी भी छोड़ सकते हैं।",
+};
+/* ═══════════════════════════════════════════════════════════════════════════
+   ⛔  DO NOT EDIT BELOW THIS LINE — नीचे कुछ न बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+</script>
+
+<script>
+  /* Floating icons */
+  var floaters=[
+    {l:'5%',d:'11s',delay:'0s',e:'🌿'},{l:'18%',d:'14s',delay:'2s',e:'🧵'},
+    {l:'33%',d:'9s',delay:'1s',e:'🪷'},{l:'50%',d:'13s',delay:'3.5s',e:'🌿'},
+    {l:'68%',d:'10s',delay:'0.7s',e:'🩺'},{l:'82%',d:'8s',delay:'2s',e:'🪷'},
+    {l:'94%',d:'15s',delay:'4s',e:'🧵'},
+  ];
+  floaters.forEach(function(f){
+    var el=document.createElement('div');el.className='floater';
+    el.style.cssText='left:'+f.l+';animation-duration:'+f.d+';animation-delay:'+f.delay+';';
+    el.textContent=f.e;document.body.appendChild(el);});
+
+  var btnLabel=CONFIG.btnText+(CONFIG.btnSubText?'<small>'+CONFIG.btnSubText+'</small>':'');
+
+  function link(text,extraStyle){
+    return '<a class="join-btn" href="'+CONFIG.whatsappLink+'" target="_blank" rel="noopener noreferrer"'
+      +(extraStyle?' style="'+extraStyle+'"':'')+'>'+text+'</a>';}
+  function joinWrap(btnText,wrapStyle){
+    return '<div class="join-wrap"'+(wrapStyle?' style="'+wrapStyle+'"':'')+'>'
+      +'<span class="side-arr l">&#9658;&#9658;</span>'+link(btnText)
+      +'<span class="side-arr r">&#9668;&#9668;</span></div>';}
+  function arrowsDown(large){
+    var h='<div class="arrow-section"'+(large?'':' style="margin-bottom:6px"')+'>'
+      +'<div class="arrow-row"><span class="arrow">&#9660;</span><span class="arrow">&#9660;</span><span class="arrow">&#9660;</span></div>';
+    if(large)h+='<div class="arrow-row"><span class="arrow" style="font-size:44px">&#9660;</span>'
+      +'<span class="arrow" style="font-size:44px;animation-delay:.15s">&#9660;</span></div>';
+    return h+'</div>';}
+
+  var heroPreHTML=CONFIG.heroConditions.join(' <span class="dot">•</span> ');
+
+  var condHTML=CONFIG.conditions.map(function(c){
+    return '<div class="cond-box"><div class="c-en">'+c.en+'</div><div class="c-hi">'+c.hi+'</div></div>';}).join('');
+
+  var chipsHTML=CONFIG.therapyChips.map(function(c){return '<span class="t-chip">'+c+'</span>';}).join('');
+
+  var hlHTML=CONFIG.highlights.map(function(h){
+    return '<div class="highlight-item"><span class="h-icon">'+h.icon+'</span>'
+      +'<div><div class="h-title">'+h.title+'</div>'
+      +(h.sub?'<div class="h-sub">'+h.sub+'</div>':'')+'</div></div>';}).join('');
+
+  var learnHTML=CONFIG.learnItems.map(function(i){
+    return '<div class="learn-item"><span class="learn-check">✅</span><span>'+i+'</span></div>';}).join('');
+
+  var featHTML=CONFIG.features.map(function(f){
+    return '<div class="feat-box"><span class="f-icon">'+f.icon+'</span>'
+      +'<span class="f-text">'+f.text+'</span></div>';}).join('');
+
+  var bonusHTML=CONFIG.bonusItems.map(function(b){
+    return '<div class="bonus-item"><span style="font-size:18px;flex-shrink:0;margin-top:2px;">'+b.icon+'</span>'
+      +'<span>'+b.text+'</span></div>';}).join('');
+
+  var trustHTML=CONFIG.trustBadges.map(function(b){
+    return '<div class="trust-box"><span class="t-icon">'+b.icon+'</span>'
+      +'<span class="t-text">'+b.text+'</span></div>';}).join('');
+
+  document.title=CONFIG.pageTitle;
+
+  document.getElementById('page-root').innerHTML=
+
+    '<div class="top-badge">'+CONFIG.topBadge+'</div>'
+
+    +arrowsDown(false)
+    +joinWrap(btnLabel,'margin-bottom:22px')
+
+    +'<div class="poster-wrap">'
+    +'<img src="'+CONFIG.posterImage+'" alt="Kshar Sutra" onerror="this.parentElement.style.display=\'none\'" />'
+    +'<div class="poster-ribbon">'+CONFIG.posterRibbon+'</div></div>'
+
+    +'<div class="hero">'
+    +'<div class="pre">'+heroPreHTML+'</div>'
+    +'<div class="tag">'+CONFIG.heroTag+'</div>'
+    +'<h1><span class="brush">'+CONFIG.heroMain+'</span></h1>'
+    +'<div class="sub">'+CONFIG.heroSub+'</div></div>'
+
+    +'<div class="free-banner">'+CONFIG.freeText+'</div>'
+
+    +'<div class="cond-grid">'+condHTML+'</div>'
+
+    +'<div class="divider"><div class="divider-line"></div>'
+    +'<div class="divider-text">🧵 क्या सीखेंगे</div>'
+    +'<div class="divider-line"></div></div>'
+    +'<div class="therapy-chips">'+chipsHTML+'</div>'
+
+    +'<div class="highlights">'+hlHTML+'</div>'
+
+    +arrowsDown(true)
+    +joinWrap(btnLabel,'margin-bottom:16px')
+    +'<p style="color:#4a5a85;font-size:13px;text-align:center;margin-bottom:24px;">'+CONFIG.btnHint+'</p>'
+
+    +'<div class="card"><div class="card-title">'+CONFIG.learnTitle+'</div>'+learnHTML+'</div>'
+
+    +'<div class="divider"><div class="divider-line"></div>'
+    +'<div class="divider-text">✨ आपको मिलेगा</div>'
+    +'<div class="divider-line"></div></div>'
+    +'<div class="feat-grid">'+featHTML+'</div>'
+
+    +'<div class="bonus-box"><div class="bonus-title">'+CONFIG.bonusTitle+'</div>'+bonusHTML+'</div>'
+
+    +'<div class="urgency">'+CONFIG.urgencyText+'</div>'
+
+    +'<div class="arrow-section" style="margin-bottom:8px"><div class="arrow-row">'
+    +'<span class="arrow" style="font-size:30px">&#9650;</span>'
+    +'<span class="arrow" style="font-size:30px;animation-delay:.1s">&#9650;</span>'
+    +'<span class="arrow" style="font-size:30px;animation-delay:.2s">&#9650;</span>'
+    +'</div></div>'
+    +link(btnLabel,'margin-bottom:32px;')
+
+    +'<div class="trust-grid">'+trustHTML+'</div>'
+
+    +'<div class="footer">'+CONFIG.footerLine1+'<br>'+CONFIG.footerLine2+'</div>';
+
+  document.getElementById('sticky-bar').innerHTML=
+    '<span class="sticky-arrow">&#9658;&#9658;</span>'
+    +'<a class="sticky-btn" href="'+CONFIG.whatsappLink+'" target="_blank" rel="noopener noreferrer">'
+    +'📲 '+CONFIG.btnText+'</a>'
+    +'<span class="sticky-arrow r">&#9668;&#9668;</span>';
+</script>
+</body>
+</html>
