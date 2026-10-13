@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>बवासीर, फिशर, भगंदर का इलाज | अपॉइंटमेंट बुक करें</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    :root{
+      --teal:#0b7a68;--teal-dark:#075c4e;--teal-soft:#e8f5f2;
+      --ink:#13322b;--muted:#4f625d;--line:#d6e3e0;--pink:#d6336c;
+      --wa:#25d366;
+    }
+
+    body{background:#fff;color:var(--ink);
+      font-family:'Noto Sans Devanagari',sans-serif;line-height:1.6;
+      padding-bottom:84px;overflow-x:hidden;}
+    a{color:inherit;}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 16px;}
+
+    /* ── HEADER ── */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);
+      backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+    header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+    .brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--teal);
+      font-size:18px;letter-spacing:.3px;text-decoration:none;}
+    .brand svg{width:22px;height:22px;}
+    .nav-btn{background:var(--teal);color:#fff;text-decoration:none;font-weight:700;
+      font-size:14px;padding:8px 16px;border-radius:10px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;
+      padding:13px 22px;border-radius:12px;border:2px solid var(--teal);cursor:pointer;
+      transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent;}
+    .btn:active{transform:scale(.97);}
+    .btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(11,122,104,.28);}
+    .btn-primary:hover{background:var(--teal-dark);border-color:var(--teal-dark);}
+    .btn-outline{background:#fff;color:var(--teal);}
+    .btn-outline svg{width:18px;height:18px;fill:var(--pink);}
+    .btn-wa{background:var(--wa);border-color:var(--wa);color:#fff;width:100%;
+      box-shadow:0 6px 18px rgba(37,211,102,.3);}
+
+    /* ── HERO ── */
+    .hero{padding:40px 0 32px;}
+    .hero .wrap{display:grid;gap:28px;align-items:center;}
+    .hero h1{font-size:clamp(30px,7vw,52px);line-height:1.25;font-weight:800;}
+    .hero .lead{font-size:clamp(16px,4vw,20px);color:var(--muted);margin-top:12px;}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+    .ticks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:15px;}
+    .ticks span::before{content:'✓ ';font-weight:800;color:var(--teal);}
+
+    .symptom-card{border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;
+      background:linear-gradient(180deg,#fff,var(--teal-soft));}
+    .symptom-card h3{color:var(--teal);font-size:20px;font-weight:800;margin-bottom:8px;}
+    .symptom-card ul{padding-left:20px;color:var(--muted);font-size:16px;}
+    .symptom-card li{margin:3px 0;}
+    .symptom-card .note{margin-top:12px;font-weight:700;font-size:17px;color:var(--ink);}
+
+    /* ── SECTIONS ── */
+    section.block{padding:36px 0;}
+    section.block h2{font-size:clamp(26px,6vw,40px);font-weight:800;line-height:1.3;}
+    section.block .sub{color:var(--muted);font-size:16px;margin-top:4px;}
+    .grid3{display:grid;gap:16px;margin-top:22px;}
+    .card{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;position:relative;}
+    .card h3{color:var(--teal);font-size:19px;font-weight:800;margin-bottom:8px;}
+    .card p{font-size:16px;}
+    .card ul{padding-left:20px;margin-top:10px;color:var(--muted);font-size:15px;}
+    .card li{margin:3px 0;}
+
+    .step-num{position:absolute;top:-14px;left:18px;width:30px;height:30px;border-radius:50%;
+      background:var(--teal);color:#fff;font-weight:800;font-size:15px;
+      display:flex;align-items:center;justify-content:center;}
+    .steps .card{padding-top:26px;}
+    .steps{margin-top:34px;}
+    .after-cta{margin-top:22px;}
+
+    /* ── FORM ── */
+    .form-card{border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:22px;
+      max-width:640px;background:#fff;box-shadow:0 8px 30px rgba(19,50,43,.06);}
+    .field{margin-bottom:14px;}
+    .field label{display:block;font-weight:700;font-size:15px;margin-bottom:6px;}
+    .field input,.field select{width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+      padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;}
+    .field input:focus,.field select:focus{outline:2px solid var(--teal);border-color:var(--teal);}
+    .form-msg{font-size:14px;margin-top:10px;min-height:20px;color:var(--teal-dark);font-weight:600;}
+    .form-msg.err{color:#c62828;}
+
+    /* ── FAQ ── */
+    .faq{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+    .faq details{border:1px solid var(--line);border-radius:14px;padding:14px 18px;background:#fff;}
+    .faq summary{font-weight:700;font-size:16px;cursor:pointer;list-style:none;}
+    .faq summary::-webkit-details-marker{display:none;}
+    .faq summary::before{content:'▸ ';color:var(--teal);}
+    .faq details[open] summary::before{content:'▾ ';}
+    .faq details p{color:var(--muted);margin-top:8px;font-size:15px;}
+
+    .disclaimer{border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+      font-size:14px;color:var(--muted);margin:10px 0 0;background:#fafcfb;}
+    .disclaimer b{color:var(--ink);}
+
+    footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0;font-size:15px;color:var(--muted);}
+    footer b{color:var(--ink);}
+    footer a{color:var(--teal);font-weight:600;}
+
+    /* ── STICKY MOBILE BAR ── */
+    .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;
+      border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:10px;
+      box-shadow:0 -6px 20px rgba(19,50,43,.08);}
+    .sticky-bar .btn{flex:1;padding:12px 10px;font-size:15px;}
+
+    @media (min-width:860px){
+      .hero{padding:64px 0 40px;}
+      .hero .wrap{grid-template-columns:1.25fr 1fr;gap:48px;}
+      .grid3{grid-template-columns:repeat(3,1fr);}
+      .sticky-bar{display:none;}
+      body{padding-bottom:0;}
+    }
+  </style>
+</head>
+<body>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  CONFIG — लिंक और फ़ोन नंबर सिर्फ यहाँ बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  whatsappLink: "https://chat.whatsapp.com/Lir7iqN9pUwCjF4aSocUhf",
+  phones: ["9410379397", "9119079397"],
+};
+</script>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 13v2a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="11" r="2"/></svg>
+      NAVAYU CARE
+    </a>
+    <a class="nav-btn js-wa" href="#">अपॉइंटमेंट</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>बवासीर, फिशर और भगंदर का सही इलाज — बिना शर्म, बिना देरी</h1>
+        <p class="lead">मल त्याग में दर्द, खून आना या जलन? शर्माएं नहीं, समय पर जाँच कराएं। अनुभवी डॉक्टर से अपना अपॉइंटमेंट आज ही बुक करें।</p>
+        <div class="cta-row">
+          <a class="btn btn-primary js-wa" href="#">ऑनलाइन अपॉइंटमेंट बुक करें</a>
+          <a class="btn btn-outline js-phone" data-i="0" href="#"></a>
+          <a class="btn btn-outline js-phone" data-i="1" href="#"></a>
+        </div>
+        <div class="ticks">
+          <span>गोपनीय परामर्श</span>
+          <span>आधुनिक उपचार</span>
+          <span>आसान अपॉइंटमेंट</span>
+          <span>डॉ. अंबिका मामगाईं (आयुर्वेदाचार्य, B.A.M.S.)</span>
+        </div>
+      </div>
+
+      <aside class="symptom-card">
+        <h3>क्या आपको ये समस्या है?</h3>
+        <ul>
+          <li>शौच के समय या बाद में खून आना</li>
+          <li>गुदा में तेज दर्द या जलन</li>
+          <li>गुदा के पास गाँठ या सूजन</li>
+          <li>बार-बार कब्ज़ रहना</li>
+          <li>गुदा के पास से मवाद या पस रिसना</li>
+        </ul>
+        <p class="note">इनमें से कोई भी लक्षण हो तो डॉक्टर को दिखाएं।</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CONDITIONS -->
+  <section class="block">
+    <div class="wrap">
+      <h2>हम किन समस्याओं का इलाज करते हैं</h2>
+      <p class="sub">सही पहचान ही सही इलाज की पहली सीढ़ी है।</p>
+      <div class="grid3">
+        <div class="card">
+          <h3>बवासीर (Piles)</h3>
+          <p>गुदा के अंदर या बाहर नसों की सूजन। खून आना, गाँठ और दर्द मुख्य लक्षण हैं।</p>
+          <ul>
+            <li>शुरुआती अवस्था में दवा व खान-पान सुधार</li>
+            <li>ज़रूरत पड़ने पर आधुनिक प्रक्रियाएं / सर्जरी</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>फिशर (Fissure)</h3>
+          <p>गुदा की त्वचा में कट या दरार। शौच के समय तेज चुभने वाला दर्द होता है।</p>
+          <ul>
+            <li>शुरुआती चरण में दवा व मलहम</li>
+            <li>पुराने मामलों में उचित सर्जिकल विकल्प</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>भगंदर (Fistula)</h3>
+          <p>गुदा के पास संक्रमित सुरंग जैसा रास्ता, जिससे मवाद निकलता है। अपने आप ठीक नहीं होता।</p>
+          <ul>
+            <li>जाँच के बाद डॉक्टर द्वारा तय उपचार</li>
+            <li>समय पर इलाज से जटिलताओं से बचाव</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NOT DELAY -->
+  <section class="block">
+    <div class="wrap">
+      <h2>इलाज में देरी क्यों न करें</h2>
+      <div class="grid3">
+        <div class="card"><h3>समस्या बढ़ सकती है</h3><p>शुरू में छोटी लगने वाली दिक्कत समय के साथ गंभीर हो सकती है।</p></div>
+        <div class="card"><h3>खून आना हर बार बवासीर नहीं</h3><p>गुदा से खून आने के अन्य कारण भी हो सकते हैं, इसलिए जाँच ज़रूरी है।</p></div>
+        <div class="card"><h3>शर्म नहीं, सेहत पहले</h3><p>आपकी हर जानकारी गोपनीय रखी जाती है।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block">
+    <div class="wrap">
+      <h2>अपॉइंटमेंट कैसे लें</h2>
+      <p class="sub">सिर्फ 3 आसान कदम</p>
+      <div class="grid3 steps">
+        <div class="card"><span class="step-num">1</span><h3>बटन दबाएं</h3><p>"ऑनलाइन अपॉइंटमेंट बुक करें" पर क्लिक करके हमारी WhatsApp कम्युनिटी से जुड़ें।</p></div>
+        <div class="card"><span class="step-num">2</span><h3>तारीख व समय चुनें</h3><p>अपनी सुविधा के अनुसार स्लॉट चुनें और अपनी जानकारी भेजें।</p></div>
+        <div class="card"><span class="step-num">3</span><h3>डॉक्टर से मिलें</h3><p>तय समय पर आएं, जाँच कराएं और सही सलाह पाएं।</p></div>
+      </div>
+      <div class="after-cta"><a class="btn btn-primary js-wa" href="#">अभी अपॉइंटमेंट बुक करें →</a></div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="block" id="book">
+    <div class="wrap">
+      <h2>जल्दी कॉलबैक / WhatsApp पर बुकिंग</h2>
+      <p class="sub">नीचे जानकारी भरें — आपका संदेश कॉपी हो जाएगा और WhatsApp खुलेगा, बस पेस्ट करके भेजें।</p>
+      <form class="form-card" id="book-form" novalidate>
+        <div class="field">
+          <label for="f-name">आपका नाम</label>
+          <input id="f-name" type="text" placeholder="नाम लिखें" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="f-phone">मोबाइल नंबर</label>
+          <input id="f-phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10 अंकों का नंबर" autocomplete="tel" required />
+        </div>
+        <div class="field">
+          <label for="f-issue">समस्या</label>
+          <select id="f-issue">
+            <option>बवासीर (Piles)</option>
+            <option>फिशर (Fissure)</option>
+            <option>भगंदर (Fistula)</option>
+            <option>पक्का पता नहीं / जाँच करानी है</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-date">पसंदीदा तारीख</label>
+          <input id="f-date" type="date" />
+        </div>
+        <button class="btn btn-wa" type="submit">WhatsApp पर अपॉइंटमेंट भेजें</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <div class="wrap">
+      <h2>अक्सर पूछे जाने वाले सवाल</h2>
+      <div class="faq">
+        <details><summary>क्या बवासीर का हर मरीज़ ऑपरेशन कराना पड़ता है?</summary>
+          <p>नहीं। शुरुआती अवस्था में अक्सर दवा, खान-पान और दिनचर्या में बदलाव से राहत मिल जाती है। प्रक्रिया या सर्जरी की ज़रूरत है या नहीं, यह डॉक्टर जाँच के बाद ही बताते हैं।</p></details>
+        <details><summary>क्या जाँच में दर्द होता है?</summary>
+          <p>जाँच आमतौर पर कुछ ही मिनट की होती है और सावधानी से की जाती है। ज़्यादातर मरीज़ों को हल्की असुविधा ही होती है। आप अपनी चिंता डॉक्टर को पहले बता सकते हैं।</p></details>
+        <details><summary>क्या खून आना हमेशा बवासीर होता है?</summary>
+          <p>नहीं। फिशर, संक्रमण या आँतों की अन्य समस्याओं से भी खून आ सकता है। इसलिए खुद से अंदाज़ा लगाने के बजाय जाँच कराना ज़रूरी है।</p></details>
+        <details><summary>अपॉइंटमेंट के लिए क्या लाना होगा?</summary>
+          <p>अगर कोई पुरानी रिपोर्ट, पर्चा या चल रही दवाओं की सूची है तो साथ लाएं। एक पहचान पत्र और अपना मोबाइल नंबर भी रखें।</p></details>
+      </div>
+      <p class="disclaimer"><b>सूचना:</b> यह जानकारी सामान्य जागरूकता के लिए है, यह डॉक्टर की सलाह का विकल्प नहीं है। इलाज का परिणाम हर मरीज़ में अलग हो सकता है। सही निदान के लिए डॉक्टर से मिलें।</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>NAVAYU CARE</b><br>
+    डॉक्टर: डॉ. अंबिका मामगाईं, आयुर्वेदाचार्य (B.A.M.S.)<br>
+    पता: सिद्धपुरम, हर्रावाला, लेन नं. 2, देहरादून<br>
+    फ़ोन: <span id="footer-phones"></span>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <a class="btn btn-outline js-phone" data-i="0" data-short="1" href="#"></a>
+  <a class="btn btn-primary js-wa" href="#">अपॉइंटमेंट बुक करें</a>
+</div>
+
+<script>
+  var phoneIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>';
+
+  document.querySelectorAll('.js-wa').forEach(function(a){
+    a.href=CONFIG.whatsappLink;a.target='_blank';a.rel='noopener noreferrer';});
+
+  document.querySelectorAll('.js-phone').forEach(function(a){
+    var p=CONFIG.phones[+a.dataset.i];
+    a.href='tel:+91'+p;
+    a.innerHTML=phoneIcon+(a.dataset.short?'कॉल करें':p);});
+
+  document.getElementById('footer-phones').innerHTML=CONFIG.phones.map(function(p){
+    return '<a href="tel:+91'+p+'">'+p+'</a>';}).join(', ');
+
+  /* Form: build message, copy to clipboard, open WhatsApp community */
+  var form=document.getElementById('book-form'),msg=document.getElementById('form-msg');
+  var dateIn=document.getElementById('f-date');
+  dateIn.min=new Date().toISOString().slice(0,10);
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var phone=document.getElementById('f-phone').value.replace(/\D/g,'');
+    var issue=document.getElementById('f-issue').value;
+    var date=dateIn.value;
+    msg.className='form-msg';
+    if(!name){msg.className='form-msg err';msg.textContent='कृपया अपना नाम लिखें।';return;}
+    if(!/^[6-9]\d{9}$/.test(phone)){msg.className='form-msg err';msg.textContent='कृपया सही 10 अंकों का मोबाइल नंबर लिखें।';return;}
+
+    var text='नमस्ते, मुझे अपॉइंटमेंट चाहिए।\nनाम: '+name+'\nमोबाइल: '+phone+'\nसमस्या: '+issue
+      +(date?'\nपसंदीदा तारीख: '+date.split('-').reverse().join('/'):'');
+
+    var win=window.open(CONFIG.whatsappLink,'_blank');if(win)win.opener=null;
+    function done(copied){
+      msg.textContent=copied
+        ?'✓ संदेश कॉपी हो गया — WhatsApp में पेस्ट करके भेजें।'
+        :'WhatsApp में यह संदेश भेजें: '+text.replace(/\n/g,' | ');
+      if(!win)location.href=CONFIG.whatsappLink;}
+    try{
+      navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});
+    }catch(err){done(false);}
+  });
+</script>
+</body>
+</html>
