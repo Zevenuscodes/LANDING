@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>निःशुल्क नाड़ी जाँच शिविर – नवायु केयर</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    :root{
+      --gold:#b8862b;--gold-soft:#e6c47a;--gold-line:#e5dcc3;
+      --green:#1f5134;--green-dark:#163c27;
+      --ink:#1b2a20;--muted:#5d6a60;--cream:#fbf8f1;
+      --wa:#25d366;
+    }
+
+    body{background:var(--cream);color:var(--ink);
+      font-family:'Noto Sans Devanagari',sans-serif;line-height:1.65;
+      padding-bottom:84px;overflow-x:hidden;}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 16px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;
+      padding:13px 24px;border-radius:12px;border:2px solid var(--green);
+      transition:transform .15s;-webkit-tap-highlight-color:transparent;}
+    .btn:active{transform:scale(.97);}
+    .btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(31,81,52,.25);}
+    .btn-primary:hover{background:var(--green-dark);}
+    .btn-outline{background:#fff;color:var(--gold);border-color:var(--gold-soft);}
+    .btn-wa{background:var(--wa);border-color:var(--wa);color:#fff;width:100%;
+      box-shadow:0 6px 18px rgba(37,211,102,.3);}
+
+    /* ── HERO ── */
+    .hero{padding:40px 0 28px;}
+    .pill{display:inline-block;border:1.5px solid var(--gold);color:var(--gold);
+      font-size:14px;font-weight:600;padding:3px 14px;border-radius:30px;margin-bottom:12px;}
+    .hero h1{font-size:clamp(34px,8.5vw,58px);font-weight:800;line-height:1.2;color:var(--green);}
+    .hero .lead{font-size:clamp(16px,4vw,20px);color:var(--muted);margin-top:12px;max-width:640px;}
+    .pulse{width:100%;height:60px;margin:22px 0 18px;display:block;}
+    .pulse path{fill:none;stroke:var(--gold-soft);stroke-width:3;stroke-linejoin:round;
+      stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s ease-out forwards;}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .facts{display:grid;gap:14px;}
+    .fact{border-left:4px solid var(--gold);padding:2px 0 2px 14px;}
+    .fact small{display:block;font-size:13px;color:var(--muted);font-weight:600;}
+    .fact b{font-size:clamp(16px,4vw,19px);}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+
+    /* ── SECTIONS ── */
+    section.block{padding:36px 0;border-top:1px solid var(--gold-line);}
+    section.block h2{font-size:clamp(26px,6vw,40px);font-weight:800;line-height:1.3;margin-bottom:6px;}
+    .sub{color:var(--muted);font-size:16px;}
+    .intro p{color:var(--muted);font-size:17px;max-width:720px;margin-top:6px;}
+    .checks{list-style:none;margin-top:16px;}
+    .checks li{padding:4px 0 4px 28px;position:relative;font-size:16px;}
+    .checks li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:800;}
+
+    .grid3{display:grid;gap:14px;margin-top:20px;}
+    .card{background:#fff;border:1px solid var(--gold-line);border-radius:16px;padding:20px;}
+    .card h3{color:var(--green);font-size:18px;font-weight:800;margin-bottom:6px;}
+    .card p{color:var(--muted);font-size:15px;}
+
+    .info{display:grid;gap:22px;margin-top:16px;}
+    .info dl div{margin-bottom:12px;}
+    .info dt{font-size:13px;color:var(--muted);}
+    .info dd{font-weight:700;font-size:17px;}
+    .info .tip{color:var(--muted);font-size:16px;margin-bottom:14px;}
+
+    /* ── FORM ── */
+    .form-card{background:#fff;border:1px solid var(--gold-line);border-radius:18px;
+      padding:22px;margin-top:20px;max-width:640px;box-shadow:0 8px 30px rgba(31,81,52,.06);}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .field{margin-bottom:14px;}
+    .field label{display:block;font-weight:700;font-size:15px;margin-bottom:6px;}
+    .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+      padding:12px 14px;border:1px solid var(--gold-line);border-radius:10px;background:#fff;}
+    .field textarea{min-height:96px;resize:vertical;}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+    .form-msg{font-size:14px;margin-top:10px;min-height:20px;color:var(--green);font-weight:600;}
+    .form-msg.err{color:#c62828;}
+
+    .phones a{display:block;font-size:clamp(22px,6vw,28px);font-weight:800;color:var(--green);
+      text-decoration:none;margin-top:6px;}
+    .contact .btn{margin-top:18px;}
+
+    footer{border-top:1px solid var(--gold-line);padding:24px 0 30px;color:var(--muted);font-size:15px;}
+    footer b{color:var(--gold);}
+    footer p{margin-top:10px;}
+
+    /* ── STICKY MOBILE BAR ── */
+    .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;
+      border-top:1px solid var(--gold-line);padding:10px 16px;display:flex;gap:10px;
+      box-shadow:0 -6px 20px rgba(31,81,52,.08);}
+    .sticky-bar .btn{flex:1;padding:12px 10px;font-size:15px;}
+
+    @media (min-width:860px){
+      .hero{padding:64px 0 40px;}
+      .facts{grid-template-columns:repeat(3,1fr);}
+      .grid3{grid-template-columns:repeat(3,1fr);}
+      .info{grid-template-columns:1.2fr 1fr;gap:40px;}
+      .sticky-bar{display:none;}
+      body{padding-bottom:0;}
+    }
+  </style>
+</head>
+<body>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  CONFIG — लिंक, फ़ोन और शिविर की तारीखें सिर्फ यहाँ बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  whatsappLink: "https://chat.whatsapp.com/GWKUbqe9IDg2MrJSjQ2quw",
+  phones: ["9410379397", "9119079397"],
+  campStart: "2026-10-19",
+  campEnd:   "2026-10-31",
+  mapsLink: "https://www.google.com/maps/search/?api=1&query=Navayu+Care+Siddhpuram+Harrawala+Dehradun+248001",
+};
+</script>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="pill">नवायु केयर · देहरादून</span>
+      <h1>निःशुल्क नाड़ी जाँच शिविर</h1>
+      <p class="lead">अपने शरीर की स्थिति को नाड़ी से समझें। अनुभवी वैद्य से मुफ़्त जाँच और परामर्श।</p>
+
+      <svg class="pulse" viewBox="0 0 1080 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 32 H235 L262 2 L292 58 L318 18 L345 32 H568 L595 2 L625 58 L651 18 L678 32 H1080"/>
+      </svg>
+
+      <div class="facts">
+        <div class="fact"><small>तिथि</small><b>19 से 31 अक्टूबर</b></div>
+        <div class="fact"><small>समय</small><b>सुबह 10 बजे से शाम 6 बजे तक</b></div>
+        <div class="fact"><small>स्थान</small><b>सिद्धपुरम, हर्रावाला, देहरादून</b></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary js-wa" href="#">अपॉइंटमेंट बुक करें</a>
+        <a class="btn btn-outline js-phone" data-i="0" href="#">कॉल करें</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS NAADI -->
+  <section class="block intro">
+    <div class="wrap">
+      <h2>नाड़ी परीक्षण क्या है?</h2>
+      <p>नाड़ी परीक्षण आयुर्वेद की पारंपरिक पद्धति है। इसमें वैद्य कलाई की नाड़ी को ध्यान से देखकर शरीर की प्रकृति और वात, पित्त, कफ की स्थिति को समझने का प्रयास करते हैं।</p>
+      <ul class="checks">
+        <li>आपकी प्रकृति और वर्तमान स्थिति की जानकारी</li>
+        <li>खान-पान और दिनचर्या पर सरल सुझाव</li>
+        <li>बिना किसी चीरे या दर्द के, कुछ ही मिनट में जाँच</li>
+        <li>यह शिविर जानकारी और परामर्श के लिए है</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="block">
+    <div class="wrap">
+      <h2>शिविर में आपको क्या मिलेगा</h2>
+      <div class="grid3">
+        <div class="card"><h3>🌿 निःशुल्क नाड़ी जाँच</h3><p>किसी शुल्क के बिना, अनुभवी वैद्य द्वारा आपकी नाड़ी की जाँच।</p></div>
+        <div class="card"><h3>🩺 वैद्य से परामर्श</h3><p>अपनी समस्याएँ सीधे वैद्य जी को बताएँ और उचित मार्गदर्शन पाएँ।</p></div>
+        <div class="card"><h3>🍃 आहार और जीवनशैली</h3><p>आपकी प्रकृति के अनुसार खान-पान और दिनचर्या की सलाह।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS IT FOR -->
+  <section class="block">
+    <div class="wrap">
+      <h2>यह शिविर किनके लिए है</h2>
+      <div class="grid3">
+        <div class="card"><h3>थकान और कमज़ोरी</h3><p>जिन्हें दिनभर थकान या सुस्ती रहती है।</p></div>
+        <div class="card"><h3>पाचन की समस्या</h3><p>गैस, अपच या भूख की गड़बड़ी से परेशान लोग।</p></div>
+        <div class="card"><h3>नींद की समस्या</h3><p>जिन्हें ठीक से नींद नहीं आती।</p></div>
+        <div class="card"><h3>तनाव और चिंता</h3><p>मानसिक बोझ या बेचैनी महसूस करने वाले लोग।</p></div>
+        <div class="card"><h3>जोड़ों का दर्द</h3><p>घुटनों, कमर या जोड़ों में दर्द रहने वाले लोग।</p></div>
+        <div class="card"><h3>सेहत जानने के इच्छुक</h3><p>जो बिना किसी शिकायत के भी अपनी प्रकृति जानना चाहते हैं।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME & PLACE -->
+  <section class="block">
+    <div class="wrap">
+      <h2>समय और स्थान</h2>
+      <div class="info">
+        <dl>
+          <div><dt>तिथि</dt><dd>19 अक्टूबर से 31 अक्टूबर 2026</dd></div>
+          <div><dt>समय</dt><dd>सुबह 10 बजे से शाम 6 बजे तक</dd></div>
+          <div><dt>स्थान</dt><dd>नवायु केयर, शहीद दीपक नैनवाल द्वार, सिद्धपुरम, लेन नं. 2, हर्रावाला, देहरादून 248001</dd></div>
+        </dl>
+        <div>
+          <p class="tip">आने से पहले कॉल करके अपना समय पक्का कर लें, ताकि प्रतीक्षा न करनी पड़े।</p>
+          <div class="cta-row" style="margin-top:0">
+            <a class="btn btn-outline" id="maps-btn" href="#" target="_blank" rel="noopener noreferrer">📍 रास्ता देखें</a>
+            <a class="btn btn-primary js-wa" href="#">अपॉइंटमेंट बुक करें</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="block" id="book">
+    <div class="wrap">
+      <h2>अपॉइंटमेंट बुक करें</h2>
+      <p class="sub">फ़ॉर्म भरें — आपका संदेश कॉपी हो जाएगा और हमारा WhatsApp ग्रुप खुलेगा, बस पेस्ट करके भेजें।</p>
+      <form class="form-card" id="book-form" novalidate>
+        <div class="field">
+          <label for="f-name">आपका नाम</label>
+          <input id="f-name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="f-phone">मोबाइल नंबर</label>
+          <input id="f-phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10 अंकों का नंबर" autocomplete="tel" required />
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="f-age">उम्र</label>
+            <input id="f-age" type="number" inputmode="numeric" min="1" max="110" />
+          </div>
+          <div class="field">
+            <label for="f-date">तिथि</label>
+            <select id="f-date"></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-time">पसंदीदा समय</label>
+          <select id="f-time"></select>
+        </div>
+        <div class="field">
+          <label for="f-issue">छोटी-सी समस्या (वैकल्पिक)</label>
+          <textarea id="f-issue"></textarea>
+        </div>
+        <button class="btn btn-wa" type="submit">अपॉइंटमेंट बुक करें</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block contact">
+    <div class="wrap">
+      <h2>संपर्क करें</h2>
+      <div class="phones" id="phones"></div>
+      <a class="btn btn-wa js-wa" href="#" style="width:auto">WhatsApp ग्रुप से जुड़ें</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>नवायु केयर</b><br>
+    शहीद दीपक नैनवाल द्वार, सिद्धपुरम, लेन नं. 2, हर्रावाला, देहरादून 248001
+    <p>यह शिविर जानकारी और परामर्श के लिए है। यह किसी आपात स्थिति या डॉक्टर के इलाज का विकल्प नहीं है।</p>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <a class="btn btn-outline js-phone" data-i="0" href="#">📞 कॉल करें</a>
+  <a class="btn btn-primary js-wa" href="#">अपॉइंटमेंट बुक करें</a>
+</div>
+
+<script>
+  document.querySelectorAll('.js-wa').forEach(function(a){
+    a.href=CONFIG.whatsappLink;a.target='_blank';a.rel='noopener noreferrer';});
+  document.querySelectorAll('.js-phone').forEach(function(a){
+    a.href='tel:+91'+CONFIG.phones[+a.dataset.i];});
+  document.getElementById('maps-btn').href=CONFIG.mapsLink;
+  document.getElementById('phones').innerHTML=CONFIG.phones.map(function(p){
+    return '<a href="tel:+91'+p+'">'+p+'</a>';}).join('');
+
+  /* Date options: camp days from today onward */
+  var months=['जनवरी','फ़रवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'];
+  function ymd(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  var dateSel=document.getElementById('f-date'),today=ymd(new Date());
+  for(var d=new Date(CONFIG.campStart+'T00:00:00');ymd(d)<=CONFIG.campEnd;d.setDate(d.getDate()+1)){
+    if(ymd(d)<today)continue;
+    var o=document.createElement('option');o.textContent=d.getDate()+' '+months[d.getMonth()];
+    dateSel.appendChild(o);}
+  if(!dateSel.options.length){var o=document.createElement('option');o.textContent='शिविर की तारीख़ के लिए कॉल करें';dateSel.appendChild(o);}
+
+  /* Time slots: 10 AM – 6 PM, hourly */
+  var timeSel=document.getElementById('f-time');
+  function label(h){var p=h<12?'सुबह':(h<16?'दोपहर':'शाम');var hh=h>12?h-12:h;return hh+':00 '+p;}
+  for(var h=10;h<18;h++){var t=document.createElement('option');t.textContent=label(h)+' – '+label(h+1);timeSel.appendChild(t);}
+
+  /* Form: build message, copy to clipboard, open WhatsApp group */
+  var form=document.getElementById('book-form'),msg=document.getElementById('form-msg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var phone=document.getElementById('f-phone').value.replace(/\D/g,'');
+    var age=document.getElementById('f-age').value.trim();
+    var issue=document.getElementById('f-issue').value.trim();
+    msg.className='form-msg';
+    if(!name){msg.className='form-msg err';msg.textContent='कृपया अपना नाम लिखें।';return;}
+    if(!/^[6-9]\d{9}$/.test(phone)){msg.className='form-msg err';msg.textContent='कृपया सही 10 अंकों का मोबाइल नंबर लिखें।';return;}
+
+    var text='नमस्ते, मुझे निःशुल्क नाड़ी जाँच शिविर में अपॉइंटमेंट चाहिए।\nनाम: '+name+'\nमोबाइल: '+phone
+      +(age?'\nउम्र: '+age:'')+'\nतिथि: '+dateSel.value+'\nसमय: '+timeSel.value
+      +(issue?'\nसमस्या: '+issue:'');
+
+    var win=window.open(CONFIG.whatsappLink,'_blank');if(win)win.opener=null;
+    function done(copied){
+      msg.textContent=copied
+        ?'✓ संदेश कॉपी हो गया — WhatsApp में पेस्ट करके भेजें।'
+        :'WhatsApp में यह संदेश भेजें: '+text.replace(/\n/g,' | ');
+      if(!win)location.href=CONFIG.whatsappLink;}
+    try{
+      navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});
+    }catch(err){done(false);}
+  });
+</script>
+</body>
+</html>
