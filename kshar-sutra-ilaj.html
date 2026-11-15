@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>क्षार सूत्र से बवासीर, फिशर, भगंदर का इलाज | नवायु केयर देहरादून</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    :root{
+      --teal:#0b7a68;--teal-dark:#075c4e;--teal-soft:#e8f5f2;
+      --amber:#f59e0b;--amber-dark:#d97706;--amber-soft:#fff7e6;
+      --red:#dc2626;
+      --ink:#13322b;--muted:#4f625d;--line:#d6e3e0;
+      --wa:#25d366;
+    }
+
+    body{background:#fff;color:var(--ink);
+      font-family:'Noto Sans Devanagari',sans-serif;line-height:1.6;
+      padding-bottom:78px;overflow-x:hidden;}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 16px;}
+
+    /* ── HEADER ── */
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+    header .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
+    .brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--teal);font-size:18px;text-decoration:none;}
+    .brand svg{width:22px;height:22px;}
+    .hdr-call{display:inline-flex;align-items:center;gap:6px;background:var(--amber);color:#1b1300;
+      font-weight:800;font-size:14px;padding:8px 14px;border-radius:30px;text-decoration:none;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      font-family:inherit;font-weight:800;font-size:17px;text-decoration:none;cursor:pointer;
+      padding:14px 22px;border-radius:12px;border:none;
+      transition:transform .15s;-webkit-tap-highlight-color:transparent;}
+    .btn:active{transform:scale(.97);}
+    .btn-call{background:var(--amber);color:#1b1300;box-shadow:0 6px 18px rgba(245,158,11,.35);
+      animation:pulse 1.6s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(245,158,11,.35)}50%{box-shadow:0 6px 30px rgba(245,158,11,.7)}}
+    .btn-wa{background:var(--wa);color:#fff;box-shadow:0 6px 18px rgba(37,211,102,.3);}
+    .btn-teal{background:var(--teal);color:#fff;width:100%;}
+    .btn-teal:hover{background:var(--teal-dark);}
+
+    /* ── HERO ── */
+    .hero{background:linear-gradient(180deg,var(--teal-soft),#fff);padding:28px 0 32px;}
+    .hero .wrap{display:grid;gap:22px;align-items:start;}
+    .hero h1{font-size:clamp(28px,7.2vw,46px);font-weight:900;line-height:1.25;}
+    .hero h1 span{color:var(--red);}
+    .hero .lead{font-size:clamp(16px,4.2vw,20px);color:var(--muted);margin-top:10px;}
+    .hero .lead b{color:var(--teal);}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+    .hero-ctas .btn{flex:1;min-width:150px;}
+    .hero-points{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:18px;font-size:15px;font-weight:600;}
+    .hero-points li::before{content:'✔ ';color:var(--teal);font-weight:900;}
+
+    /* ── LEAD FORM ── */
+    .lead-form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;
+      box-shadow:0 12px 36px rgba(19,50,43,.1);}
+    .lead-form h2{font-size:20px;font-weight:800;margin-bottom:4px;}
+    .lead-form .hint{font-size:14px;color:var(--muted);margin-bottom:14px;}
+    .field{margin-bottom:12px;}
+    .field>label{display:block;font-weight:700;font-size:15px;margin-bottom:6px;}
+    .field input[type=text],.field input[type=tel]{width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+      padding:12px 14px;border:1px solid var(--line);border-radius:10px;}
+    .field input:focus{outline:2px solid var(--teal);border-color:var(--teal);}
+    .symptoms{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .symptoms label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;
+      padding:9px 10px;font-size:14px;font-weight:600;cursor:pointer;}
+    .symptoms input{accent-color:var(--teal);width:17px;height:17px;}
+    .symptoms label:has(input:checked){border-color:var(--teal);background:var(--teal-soft);}
+    .privacy{font-size:13px;color:var(--muted);margin-top:10px;text-align:center;}
+    .form-msg{font-size:14px;margin-top:8px;min-height:18px;color:var(--teal-dark);font-weight:600;text-align:center;}
+    .form-msg.err{color:var(--red);}
+
+    /* ── CALL STRIP (repeats down the page) ── */
+    .call-strip{background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;margin-top:24px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    .call-strip p{font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;}
+    .live-dot{width:10px;height:10px;border-radius:50%;background:var(--wa);flex-shrink:0;
+      box-shadow:0 0 0 0 rgba(37,211,102,.7);animation:live 1.6s infinite;}
+    @keyframes live{70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+    .call-strip .btn{padding:10px 18px;font-size:15px;animation:none;}
+
+    /* ── SECTIONS ── */
+    section.block{padding:40px 0;}
+    section.alt{background:#f7faf9;}
+    section.block h2{font-size:clamp(24px,6vw,36px);font-weight:900;line-height:1.3;}
+    .sub{color:var(--muted);font-size:16px;margin-top:4px;}
+
+    .offer{background:var(--amber-soft);border:2px dashed var(--amber);border-radius:18px;padding:22px;}
+    .offer ul{list-style:none;margin-top:12px;display:grid;gap:8px;}
+    .offer li{padding-left:28px;position:relative;font-size:16px;font-weight:600;}
+    .offer li::before{content:'✅';position:absolute;left:0;font-size:15px;}
+
+    .grid{display:grid;gap:14px;margin-top:20px;grid-template-columns:1fr 1fr;}
+    .cond{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;}
+    .cond .ico{font-size:28px;}
+    .cond h3{font-size:17px;font-weight:800;margin-top:4px;}
+    .cond h3 small{display:block;color:var(--teal);font-size:13px;font-weight:700;}
+    .cond p{font-size:14px;color:var(--muted);margin-top:4px;}
+
+    .what{display:grid;gap:20px;margin-top:16px;align-items:center;}
+    .what p{font-size:17px;color:var(--muted);}
+    .what p b{color:var(--ink);}
+    .benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .benefit{background:var(--teal-soft);border-radius:14px;padding:14px;text-align:center;font-weight:700;font-size:15px;}
+    .benefit span{display:block;font-size:26px;margin-bottom:4px;}
+
+    .steps{list-style:none;margin-top:22px;display:grid;gap:12px;counter-reset:s;}
+    .steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;
+      background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;}
+    .steps li::before{content:counter(s);flex-shrink:0;width:34px;height:34px;border-radius:50%;
+      background:var(--teal);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;}
+    .steps b{display:block;font-size:16px;}
+    .steps span{font-size:14px;color:var(--muted);}
+
+    .why .card{border:1px solid var(--line);border-left:5px solid var(--red);border-radius:14px;padding:16px;background:#fff;}
+    .why .card h3{font-size:17px;font-weight:800;}
+    .why .card p{font-size:14px;color:var(--muted);margin-top:4px;}
+
+    .doctor{display:flex;gap:18px;align-items:center;margin-top:20px;background:#fff;
+      border:1px solid var(--line);border-radius:18px;padding:20px;}
+    .avatar{width:84px;height:84px;border-radius:50%;flex-shrink:0;background:var(--teal);color:#fff;
+      display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;}
+    .doctor h3{font-size:20px;font-weight:800;}
+    .doctor .deg{color:var(--teal);font-weight:700;}
+    .doctor p{font-size:15px;color:var(--muted);margin-top:4px;}
+
+    .dur{display:grid;gap:12px;margin-top:20px;}
+    .dur .card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;}
+    .dur h3{font-size:17px;font-weight:800;color:var(--teal);}
+    .dur p{font-size:15px;color:var(--muted);margin-top:4px;}
+
+    .faq{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+    .faq details{border:1px solid var(--line);border-radius:14px;padding:14px 18px;background:#fff;}
+    .faq summary{font-weight:700;font-size:16px;cursor:pointer;list-style:none;}
+    .faq summary::-webkit-details-marker{display:none;}
+    .faq summary::before{content:'＋ ';color:var(--teal);font-weight:900;}
+    .faq details[open] summary::before{content:'－ ';}
+    .faq p{color:var(--muted);margin-top:8px;font-size:15px;}
+
+    .visit{display:grid;gap:16px;margin-top:18px;}
+    .visit .card{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;}
+    .visit dt{font-size:13px;color:var(--muted);}
+    .visit dd{font-weight:700;font-size:16px;margin-bottom:10px;}
+    .visit a.map{color:var(--teal);font-weight:700;}
+
+    footer{background:var(--ink);color:#cfe0db;padding:24px 0 28px;font-size:14px;}
+    footer b{color:#fff;font-size:16px;}
+    footer p{margin-top:10px;opacity:.85;}
+
+    /* ── STICKY BOTTOM BAR ── */
+    .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;
+      border-top:1px solid var(--line);padding:9px 12px;display:flex;gap:10px;
+      box-shadow:0 -6px 20px rgba(19,50,43,.12);}
+    .sticky-bar .btn{flex:1;padding:12px 8px;font-size:16px;}
+
+    @media (min-width:860px){
+      .hero{padding:52px 0 48px;}
+      .hero .wrap{grid-template-columns:1.15fr 1fr;gap:40px;}
+      .grid{grid-template-columns:repeat(4,1fr);}
+      .why .grid{grid-template-columns:repeat(4,1fr);}
+      .what{grid-template-columns:1.2fr 1fr;gap:36px;}
+      .steps{grid-template-columns:repeat(5,1fr);}
+      .steps li{flex-direction:column;}
+      .dur{grid-template-columns:repeat(3,1fr);}
+      .visit{grid-template-columns:1fr 1fr;}
+      .sticky-bar{width:380px;left:auto;right:20px;bottom:20px;border-radius:16px;border:1px solid var(--line);}
+      body{padding-bottom:0;}
+    }
+  </style>
+</head>
+<body>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✏️  CONFIG — लिंक और फ़ोन नंबर सिर्फ यहाँ बदलें
+   ═══════════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  whatsappLink: "https://chat.whatsapp.com/Lir7iqN9pUwCjF4aSocUhf",
+  phones: ["9410379397", "9119079397"],
+  mapsLink: "https://www.google.com/maps/search/?api=1&query=Navayu+Care+Siddhpuram+Harrawala+Dehradun+248001",
+};
+</script>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 13v2a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="11" r="2"/></svg>
+      NAVAYU CARE
+    </a>
+    <a class="hdr-call js-call" data-i="0" href="#">📞 कॉल करें</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO + LEAD FORM -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>क्या आप <span>बवासीर, फिशर या भगंदर</span> से परेशान हैं?</h1>
+        <p class="lead"><b>क्षार सूत्र</b> — सुश्रुत संहिता की आयुर्वेदिक पद्धति से इलाज, <b>बिना बड़े ऑपरेशन</b> के। आज ही अनुभवी आयुर्वेदाचार्य से बात करें।</p>
+        <div class="hero-ctas">
+          <a class="btn btn-call js-call" data-i="0" href="#">📞 अभी कॉल करें</a>
+          <a class="btn btn-wa js-wa" href="#">💬 WhatsApp करें</a>
+        </div>
+        <ul class="hero-points">
+          <li>बिना बड़े चीरे के प्रक्रिया</li>
+          <li>पूरी तरह गोपनीय परामर्श</li>
+          <li>आमतौर पर उसी दिन घर</li>
+          <li>आहार चार्ट व फॉलो-अप</li>
+        </ul>
+      </div>
+
+      <form class="lead-form" id="lead-form" novalidate>
+        <h2>मुफ़्त परामर्श के लिए जानकारी भरें</h2>
+        <p class="hint">हमारी टीम आपसे संपर्क करके सही समय तय करेगी।</p>
+        <div class="field">
+          <label for="f-name">आपका नाम</label>
+          <input id="f-name" type="text" autocomplete="name" placeholder="नाम लिखें" />
+        </div>
+        <div class="field">
+          <label for="f-phone">मोबाइल नंबर</label>
+          <input id="f-phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10 अंकों का नंबर" />
+        </div>
+        <div class="field">
+          <label for="f-days">कितने दिनों से समस्या है?</label>
+          <input id="f-days" type="text" placeholder="जैसे: 2 महीने" />
+        </div>
+        <div class="field">
+          <label>आपके लक्षण (जो लागू हों)</label>
+          <div class="symptoms">
+            <label><input type="checkbox" value="खून आना" />खून आना</label>
+            <label><input type="checkbox" value="मस्से / गाँठ" />मस्से / गाँठ</label>
+            <label><input type="checkbox" value="मवाद / पस" />मवाद / पस</label>
+            <label><input type="checkbox" value="कट / दरार" />कट / दरार</label>
+            <label><input type="checkbox" value="दर्द / जलन" />दर्द / जलन</label>
+            <label><input type="checkbox" value="कब्ज़" />कब्ज़</label>
+          </div>
+        </div>
+        <button class="btn btn-teal" type="submit">शुरुआत करें →</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+        <p class="privacy">🔒 आपकी पहचान और जानकारी पूरी तरह गोपनीय रखी जाएगी।</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section class="block">
+    <div class="wrap">
+      <div class="offer">
+        <h2>नवायु केयर में क्षार सूत्र इलाज</h2>
+        <ul>
+          <li>अनुभवी आयुर्वेदाचार्य द्वारा जाँच और परामर्श</li>
+          <li>बवासीर (खूनी व बादी), फिशर और भगंदर का इलाज</li>
+          <li>लोकल एनेस्थीसिया में की जाने वाली छोटी प्रक्रिया</li>
+          <li>ज़्यादातर मामलों में भर्ती की ज़रूरत नहीं</li>
+          <li>आपकी प्रकृति के अनुसार आहार चार्ट</li>
+          <li>नियमित फॉलो-अप और सूत्र परिवर्तन</li>
+          <li>पूरी गोपनीयता — शर्म की कोई बात नहीं</li>
+        </ul>
+      </div>
+      <div class="call-strip"><p><span class="live-dot"></span>डॉक्टर से अभी बात करें</p><a class="btn btn-call js-call" data-i="0" href="#">📞 कॉल करें</a></div>
+    </div>
+  </section>
+
+  <!-- CONDITIONS -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>हम किन समस्याओं का इलाज करते हैं</h2>
+      <p class="sub">सही पहचान ही सही इलाज की पहली सीढ़ी है।</p>
+      <div class="grid">
+        <div class="cond"><div class="ico">🩸</div><h3>बवासीर<small>Piles</small></h3><p>गुदा में मस्से, खून आना, दर्द या खुजली।</p></div>
+        <div class="cond"><div class="ico">⚡</div><h3>फिशर<small>Fissure</small></h3><p>गुदा में दरार, शौच के समय तेज़ चुभन वाला दर्द।</p></div>
+        <div class="cond"><div class="ico">💧</div><h3>भगंदर<small>Fistula</small></h3><p>गुदा के पास से मवाद या पस रिसना, बार-बार फोड़ा।</p></div>
+        <div class="cond"><div class="ico">🌿</div><h3>कब्ज़<small>Constipation</small></h3><p>पुरानी कब्ज़, जो इन रोगों की मुख्य वजह बनती है।</p></div>
+      </div>
+      <div class="call-strip"><p><span class="live-dot"></span>अपने लक्षण बताएं — सही सलाह पाएं</p><a class="btn btn-wa js-wa" href="#">💬 WhatsApp</a></div>
+    </div>
+  </section>
+
+  <!-- WHAT IS KSHAR SUTRA -->
+  <section class="block">
+    <div class="wrap">
+      <h2>क्षार सूत्र क्या है?</h2>
+      <div class="what">
+        <p>क्षार सूत्र आयुर्वेद की एक प्राचीन पद्धति है, जिसका वर्णन <b>सुश्रुत संहिता</b> में मिलता है। इसमें औषधीय क्षार से तैयार एक विशेष धागे का उपयोग किया जाता है, जो प्रभावित हिस्से को धीरे-धीरे काटता और साथ-साथ भरता है। इसमें <b>बड़े चीरे की ज़रूरत नहीं</b> होती, इसलिए यह भगंदर और बवासीर के इलाज में बहुत उपयोगी मानी जाती है।</p>
+        <div class="benefits">
+          <div class="benefit"><span>🧵</span>बिना बड़ा चीरा</div>
+          <div class="benefit"><span>🏠</span>आमतौर पर उसी दिन घर</div>
+          <div class="benefit"><span>🚶</span>रोज़मर्रा का काम जल्दी</div>
+          <div class="benefit"><span>📜</span>शास्त्रीय आयुर्वेदिक विधि</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>इलाज कैसे होता है</h2>
+      <p class="sub">सिर्फ 5 आसान कदम</p>
+      <ol class="steps">
+        <li><div><b>कॉल या WhatsApp करें</b><span>अपनी समस्या बताएं और समय तय करें।</span></div></li>
+        <li><div><b>जाँच और निदान</b><span>डॉक्टर गोपनीय तरीके से जाँच करके सही रोग पहचानते हैं।</span></div></li>
+        <li><div><b>क्षार सूत्र प्रक्रिया</b><span>लोकल एनेस्थीसिया में छोटी प्रक्रिया की जाती है।</span></div></li>
+        <li><div><b>नियमित फॉलो-अप</b><span>ज़रूरत के अनुसार सूत्र बदला जाता है और प्रगति देखी जाती है।</span></div></li>
+        <li><div><b>आहार व दिनचर्या</b><span>दोबारा समस्या न हो, इसके लिए आहार चार्ट और सलाह।</span></div></li>
+      </ol>
+      <div class="call-strip"><p><span class="live-dot"></span>पहला कदम आज ही उठाएं</p><a class="btn btn-call js-call" data-i="1" href="#">📞 कॉल करें</a></div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="block why">
+    <div class="wrap">
+      <h2>नवायु केयर ही क्यों?</h2>
+      <div class="grid">
+        <div class="card"><h3>🔒 पूरी गोपनीयता</h3><p>आपकी हर जानकारी और बातचीत गोपनीय रहती है।</p></div>
+        <div class="card"><h3>🩺 अनुभवी आयुर्वेदाचार्य</h3><p>B.A.M.S. डॉक्टर द्वारा जाँच और इलाज।</p></div>
+        <div class="card"><h3>🌿 जड़ से इलाज पर ध्यान</h3><p>सिर्फ लक्षण नहीं, कब्ज़ और आहार जैसी वजहों पर भी काम।</p></div>
+        <div class="card"><h3>📞 आसान संपर्क</h3><p>कॉल या WhatsApp पर अपॉइंटमेंट और फॉलो-अप।</p></div>
+      </div>
+
+      <div class="doctor">
+        <div class="avatar">अं</div>
+        <div>
+          <h3>डॉ. अंबिका मामगाईं</h3>
+          <div class="deg">आयुर्वेदाचार्य (B.A.M.S.)</div>
+          <p>नवायु केयर, देहरादून — बवासीर, फिशर और भगंदर के आयुर्वेदिक इलाज के लिए परामर्श।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DURATION -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>इलाज में कितना समय लगता है?</h2>
+      <p class="sub">समय रोग की गंभीरता पर निर्भर करता है — सही अनुमान जाँच के बाद ही मिलता है।</p>
+      <div class="dur">
+        <div class="card"><h3>बवासीर</h3><p>शुरुआती अवस्था में दवा और आहार से राहत; बड़े मस्सों में क्षार सूत्र बंधन, जिसके बाद मस्सा कुछ दिनों में अपने आप गिर जाता है।</p></div>
+        <div class="card"><h3>फिशर</h3><p>नए फिशर अक्सर दवा, मलहम और आहार सुधार से ठीक होते हैं; पुराने मामलों में क्षार कर्म की ज़रूरत पड़ सकती है।</p></div>
+        <div class="card"><h3>भगंदर</h3><p>सूत्र को नियमित अंतराल पर बदला जाता है। कुल समय भगंदर के रास्ते की लंबाई पर निर्भर करता है।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <div class="wrap">
+      <h2>अक्सर पूछे जाने वाले सवाल</h2>
+      <div class="faq">
+        <details><summary>क्या क्षार सूत्र में बहुत दर्द होता है?</summary>
+          <p>प्रक्रिया लोकल एनेस्थीसिया में की जाती है। उसके बाद कुछ दिन हल्की असुविधा हो सकती है, जिसके लिए डॉक्टर दवा देते हैं।</p></details>
+        <details><summary>क्या मुझे अस्पताल में भर्ती होना पड़ेगा?</summary>
+          <p>ज़्यादातर मामलों में नहीं। मरीज़ आमतौर पर उसी दिन घर जा सकते हैं। आपके मामले में क्या ठीक रहेगा, यह डॉक्टर जाँच के बाद बताएंगे।</p></details>
+        <details><summary>क्या बीमारी दोबारा हो सकती है?</summary>
+          <p>सही इलाज के साथ आहार और दिनचर्या का पालन करने से दोबारा होने की संभावना कम होती है। इसलिए हम आहार चार्ट और फॉलो-अप पर ज़ोर देते हैं।</p></details>
+        <details><summary>क्या मेरी जानकारी गोपनीय रहेगी?</summary>
+          <p>हाँ। आपकी पहचान, जाँच और बातचीत पूरी तरह गोपनीय रखी जाती है।</p></details>
+        <details><summary>पहली मुलाक़ात में क्या लाना होगा?</summary>
+          <p>कोई पुरानी रिपोर्ट, पर्चा या चल रही दवाओं की सूची हो तो साथ लाएं।</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>क्लिनिक का पता</h2>
+      <div class="visit">
+        <div class="card">
+          <dl>
+            <dt>क्लिनिक</dt><dd>नवायु केयर</dd>
+            <dt>पता</dt><dd>शहीद दीपक नैनवाल द्वार, सिद्धपुरम, लेन नं. 2, हर्रावाला, देहरादून 248001</dd>
+            <dt>फ़ोन</dt><dd id="visit-phones"></dd>
+          </dl>
+          <a class="map" id="map-link" href="#" target="_blank" rel="noopener noreferrer">📍 Google Maps पर रास्ता देखें</a>
+        </div>
+        <div class="card">
+          <p style="font-size:17px;font-weight:700;">आने से पहले कॉल करके समय पक्का कर लें, ताकि प्रतीक्षा न करनी पड़े।</p>
+          <div class="hero-ctas">
+            <a class="btn btn-call js-call" data-i="0" href="#">📞 कॉल करें</a>
+            <a class="btn btn-wa js-wa" href="#">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>NAVAYU CARE</b><br>
+    डॉ. अंबिका मामगाईं, आयुर्वेदाचार्य (B.A.M.S.) · देहरादून
+    <p>सूचना: यह जानकारी सामान्य जागरूकता के लिए है, यह डॉक्टर की सलाह का विकल्प नहीं है। इलाज का परिणाम हर मरीज़ में अलग हो सकता है। सही निदान के लिए डॉक्टर से मिलें।</p>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <a class="btn btn-call js-call" data-i="0" href="#">📞 कॉल करें</a>
+  <a class="btn btn-wa js-wa" href="#">💬 WhatsApp</a>
+</div>
+
+<script>
+  document.querySelectorAll('.js-wa').forEach(function(a){
+    a.href=CONFIG.whatsappLink;a.target='_blank';a.rel='noopener noreferrer';});
+  document.querySelectorAll('.js-call').forEach(function(a){
+    a.href='tel:+91'+CONFIG.phones[+a.dataset.i];});
+  document.getElementById('map-link').href=CONFIG.mapsLink;
+  document.getElementById('visit-phones').innerHTML=CONFIG.phones.map(function(p){
+    return '<a href="tel:+91'+p+'" style="color:inherit">'+p+'</a>';}).join(', ');
+
+  /* Lead form: build message, copy to clipboard, open WhatsApp */
+  var form=document.getElementById('lead-form'),msg=document.getElementById('form-msg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var phone=document.getElementById('f-phone').value.replace(/\D/g,'');
+    var days=document.getElementById('f-days').value.trim();
+    var sym=[].map.call(form.querySelectorAll('.symptoms input:checked'),function(c){return c.value;});
+    msg.className='form-msg';
+    if(!name){msg.className='form-msg err';msg.textContent='कृपया अपना नाम लिखें।';return;}
+    if(!/^[6-9]\d{9}$/.test(phone)){msg.className='form-msg err';msg.textContent='कृपया सही 10 अंकों का मोबाइल नंबर लिखें।';return;}
+
+    var text='नमस्ते, मुझे क्षार सूत्र इलाज के लिए परामर्श चाहिए।\nनाम: '+name+'\nमोबाइल: '+phone
+      +(days?'\nसमस्या कब से: '+days:'')+(sym.length?'\nलक्षण: '+sym.join(', '):'');
+
+    var win=window.open(CONFIG.whatsappLink,'_blank');if(win)win.opener=null;
+    function done(copied){
+      msg.textContent=copied
+        ?'✓ संदेश कॉपी हो गया — WhatsApp में पेस्ट करके भेजें।'
+        :'WhatsApp में यह संदेश भेजें: '+text.replace(/\n/g,' | ');
+      if(!win)location.href=CONFIG.whatsappLink;}
+    try{
+      navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});
+    }catch(err){done(false);}
+  });
+</script>
+</body>
+</html>
